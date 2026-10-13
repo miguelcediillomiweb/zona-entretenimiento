@@ -1,0 +1,21 @@
+{
+  "id": "./",
+  "name": "Zona Entretenimiento by Cedillo",
+  "short_name": "Zona Entretenimiento",
+  "description": "Series, películas y pedidos desde tu celular.",
+  "lang": "es-MX",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#090916",
+  "theme_color": "#101025",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
