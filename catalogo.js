@@ -29,7 +29,7 @@ function mostrarLista(){
  nombres.forEach(function(n){
   var lista=grupos[n],card=el("button","card"),cover=el("div","cover");
   cover.appendChild(el("span","cover-title",n));
-  var p=lista.find(function(o){return o.portada});
+  var p=lista.find(function(o){return /^https?:\/\//i.test(o.portada||"")})||lista.find(function(o){return o.portada});
   if(p){
    var img=el("img");img.alt=n;img.loading="lazy";img.src=/^https?:\/\//i.test(p.portada)?p.portada:"portadas/"+encodeURIComponent(p.portada).replace(/%2F/gi,"/");
    img.onerror=function(){img.remove()};cover.appendChild(img);
