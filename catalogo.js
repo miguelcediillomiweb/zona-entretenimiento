@@ -59,12 +59,12 @@ function mostrarDetalle(n){
 }
 if(!cont)return;
 cont.innerHTML="";cont.appendChild(el("p","vacio","⏳ Cargando catálogo..."));
-fetch(URL_HOJA,{cache:"no-store"}).then(function(r){if(!r.ok)throw new Error("No se pudo leer la hoja");return r.text()}).then(function(t){
- var rows=parseCSV(t);if(!rows.length)throw new Error("La hoja está vacía");
- var h=rows.shift().map(function(s){return norm(s).replace(/\s+/g,"_")});
- rows.map(function(r){var o={};h.forEach(function(k,i){o[k]=(r[i]||"").trim()});return o})
-  .filter(function(o){return o.codigo&&norm(o.tipo)===norm(TIPO)})
-  .forEach(function(o){var g=o.saga_o_serie||o.titulo;if(!g)return;if(!grupos[g]){grupos[g]=[];nombres.push(g)}grupos[g].push(o)});
- mostrarLista();
-}).catch(function(err){cont.innerHTML="";cont.appendChild(el("p","vacio","No se pudo cargar el catálogo. Comprueba que la hoja esté compartida como lector y vuelve a intentarlo."));console.error(err)});
+fetch(URL_HOJA).then(function(r){return r.text()}).then(function(t){
+  var rows=parseCSV(t),h=rows.shift().map(function(s){return s.trim().toLowerCase()});
+  rows.map(function(r){var o={};h.forEach(function(k,i){o[k]=(r[i]||"").trim()});return o})
+    .filter(function(o){return o.codigo&&o.tipo.toLowerCase()===TIPO})
+    .forEach(function(o){var g=o.saga_o_serie||o.titulo;if(!grupos[g]){grupos[g]=[];nombres.push(g)}grupos[g].push(o)});
+  nombres.sort(function(a,b){return a.localeCompare(b,"es",{sensitivity:"base",numeric:true})});
+  mostrarLista();
+}).catch(function(){cont.innerHTML="";cont.appendChild(el("p","vacio","No se pudo cargar el catálogo. Intenta más tarde."))});
 })();
