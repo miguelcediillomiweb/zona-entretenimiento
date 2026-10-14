@@ -31,7 +31,7 @@ function mostrarLista(){
   cover.appendChild(el("span","cover-title",n));
   var p=lista.find(function(o){return o.portada});
   if(p){
-   var img=el("img");img.alt=n;img.loading="lazy";img.src="portadas/"+encodeURIComponent(p.portada).replace(/%2F/gi,"/");
+   var img=el("img");img.alt=n;img.loading="lazy";img.src=/^https?:\/\//i.test(p.portada)?p.portada:"portadas/"+encodeURIComponent(p.portada).replace(/%2F/gi,"/");
    img.onerror=function(){img.remove()};cover.appendChild(img);
   }
   card.appendChild(cover);card.appendChild(el("span","nombre",n));
