@@ -50,12 +50,40 @@ function mostrarDetalle(n){
  else lista.sort(function(a,b){return num(a.orden)-num(b.orden)});
  var volver=el("button","btn alt","← Volver al catálogo");volver.style.marginTop="0";volver.addEventListener("click",mostrarLista);cont.appendChild(volver);
  cont.appendChild(el("h2","titulo",n));
- var temp=null;
- lista.forEach(function(o){
-  if(TIPO==="serie"&&o.temporada!==temp){temp=o.temporada||"Sin número";cont.appendChild(el("p","sub","📺 Temporada "+temp))}
-  var etiqueta=TIPO==="serie"?"▶ "+(o.episodio?"Episodio "+o.episodio+": ":"")+o.titulo:"🎬 "+o.titulo;
-  var a=el("a","btn item",etiqueta);a.href=botLink(o.codigo);a.target="_blank";a.rel="noopener noreferrer";cont.appendChild(a);
- });
+ if(TIPO==="serie"){
+  var temporadas={},ordenTemporadas=[];
+  lista.forEach(function(o){
+   var t=(o.temporada||"").trim()||"Sin número";
+   if(!temporadas[t]){temporadas[t]=[];ordenTemporadas.push(t)}
+   temporadas[t].push(o);
+  });
+  ordenTemporadas.forEach(function(t){
+   var episodios=temporadas[t],poster="";
+   for(var i=0;i<episodios.length;i++){
+    var candidate=(episodios[i].portada_temporada||"").trim();
+    if(/^https?:\/\//i.test(candidate)){poster=candidate;break}
+   }
+   var bloque=el("section","season-block");
+   var cabecera=el("div","season-heading");
+   var cover=el("div","season-cover");
+   if(poster){var img=el("img");img.alt=n+" — Temporada "+t;img.loading="lazy";img.src=poster;img.onerror=function(){img.remove()};cover.appendChild(img)}
+   else cover.appendChild(el("span","season-placeholder","📺\nTemporada "+t));
+   cabecera.appendChild(cover);
+   var info=el("div","season-info");
+   info.appendChild(el("h3","season-title","Temporada "+t));
+   info.appendChild(el("p","season-count",episodios.length+" episodio"+(episodios.length===1?"":"s")));
+   cabecera.appendChild(info);bloque.appendChild(cabecera);
+   episodios.forEach(function(o){
+    var etiqueta="▶ "+(o.episodio?"Episodio "+o.episodio+": ":"")+o.titulo;
+    var link=el("a","btn item",etiqueta);link.href=botLink(o.codigo);link.target="_blank";link.rel="noopener noreferrer";bloque.appendChild(link);
+   });
+   cont.appendChild(bloque);
+  });
+ }else{
+  lista.forEach(function(o){
+   var a=el("a","btn item","🎬 "+o.titulo);a.href=botLink(o.codigo);a.target="_blank";a.rel="noopener noreferrer";cont.appendChild(a);
+  });
+ }
 }
 if(!cont)return;
 cont.innerHTML="";cont.appendChild(el("p","vacio","⏳ Cargando catálogo..."));
