@@ -37,6 +37,36 @@ input:focus,select:focus,textarea:focus{border-color:var(--blue);box-shadow:0 0 
 .btn-home{display:block;text-align:center;margin:19px auto 0;color:#ddd8ff;text-decoration:none;font-weight:700;padding:12px}
 footer{text-align:center;color:#9e98bb;font-size:.82rem;padding:12px 16px 24px}
 @media(prefers-reduced-motion:reduce){.neon-banner,.submit-btn{animation:none}}
+
+/* Neón giratorio sólido: sin arcoíris, con color propio en cada panel */
+:root{--neon-red:#ff304f;--neon-green:#39ff88;--neon-blue:#36d9ff;--neon-purple:#bd5bff}
+.neon-banner{--edge-neon:var(--neon-red);background:var(--neon-red);padding:3px;animation:none;box-shadow:0 0 15px #ff304f88,0 0 34px #ff304f33}
+.neon-banner:before{filter:blur(13px);background:var(--neon-red);animation:pedidoGlow 1.8s ease-in-out infinite}
+.neon-banner:after,.form-card:after,.success:after{content:"";position:absolute;inset:0;padding:3px;border-radius:inherit;pointer-events:none;z-index:5;background:conic-gradient(from 0deg,transparent 0 68%,var(--edge-neon,#ff304f) 76%,transparent 88% 100%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:pedidoEdgeSpin 2.3s linear infinite}
+.neon-inner{background:linear-gradient(145deg,#100d29,#17122e 60%,#0b192d)}
+.neon-inner .eyebrow{color:#fff0a8}
+.neon-inner h1{background:linear-gradient(90deg,#fff,#ffd2f3,#a9f7ff,#fff);background-size:220% auto;animation:titleShimmer 2.5s linear infinite,headingPulse 1.7s ease-in-out infinite}
+.neon-inner .eyebrow span{display:inline-block;animation:emojiDance .75s ease-in-out infinite}
+.neon-inner .eyebrow span:last-child{animation-delay:.25s}
+.neon-inner h1 .float-emoji{animation:emojiDance .85s ease-in-out infinite}
+.neon-inner h1 .float-emoji:last-child{animation-delay:.3s}
+.neon-inner p{animation:subtitleFloat 2s ease-in-out infinite}
+.form-card{--edge-neon:var(--neon-green);border-color:#39ff8850;box-shadow:0 0 22px #39ff8815,0 18px 48px #0005}
+.success{--edge-neon:var(--neon-purple)}
+.field label:before{color:var(--neon-blue);animation:labelTwinkle 1.1s ease-in-out infinite}
+.intro .intro-emoji{animation:emojiDance .8s ease-in-out infinite}
+.intro .intro-emoji:last-child{animation-delay:.25s}
+.submit-btn{background:linear-gradient(100deg,#ff304f,#ff72c7 42%,#ffd166);background-size:180% 100%;animation:button-glow 1.4s ease-in-out infinite,buttonColorFlow 3s linear infinite}
+.submit-btn .float-emoji{display:inline-block;animation:emojiDance .65s ease-in-out infinite}
+.btn-home{position:relative;isolation:isolate;border:1px solid #ffffff20;border-radius:14px;margin-top:19px}
+@keyframes pedidoEdgeSpin{to{transform:rotate(360deg)}}
+@keyframes pedidoGlow{50%{opacity:.5;filter:blur(18px)}}
+@keyframes headingPulse{50%{filter:brightness(1.4);text-shadow:0 0 28px #ff3bd488}}
+@keyframes subtitleFloat{50%{transform:translateY(-3px)}}
+@keyframes labelTwinkle{50%{opacity:.45;transform:scale(1.15)}}
+@keyframes buttonColorFlow{to{background-position:180% 0}}
+@media(prefers-reduced-motion:reduce){.neon-banner:before,.neon-banner:after,.form-card:after,.success:after,.neon-inner .eyebrow span,.neon-inner h1,.neon-inner h1 .float-emoji,.neon-inner p,.intro .intro-emoji,.submit-btn,.submit-btn .float-emoji,.field label:before{animation:none!important}}
+
 </style>
 </head>
 <body>
