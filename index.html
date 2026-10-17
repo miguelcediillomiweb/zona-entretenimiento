@@ -86,6 +86,26 @@ main{width:min(900px,100%);margin:auto;padding:16px 18px 40px;text-align:center}
 
 /* final banner edge priority */
 .install-banner,.telegram-banner,.clock-card,.choice,.order{overflow:hidden}
+
+/* Ajuste visual comprobable: estática dentro de la pantalla y palomitas cayendo */
+.tv-emoji{width:92px;height:76px;display:flex;align-items:center;justify-content:center;font-size:3.15rem;overflow:visible;animation:tvBodyJolt 1.9s steps(2,end) infinite}
+.tv-symbol{position:relative;z-index:1;display:block;line-height:1;filter:drop-shadow(0 0 8px #36d9ff)}
+.tv-static{position:absolute;z-index:2;left:20%;top:18%;width:60%;height:44%;border-radius:5px;opacity:.88;background:repeating-linear-gradient(0deg,#fff 0 1px,#15152b 1px 3px,#36d9ff 3px 4px,#17172d 4px 6px);mix-blend-mode:screen;animation:tvNoise .13s steps(2,end) infinite}
+.tv-scan{position:absolute;z-index:3;left:20%;top:18%;width:60%;height:44%;border-radius:5px;background:linear-gradient(transparent 0 42%,#fff 45% 49%,#36d9ff 51% 55%,transparent 60%);animation:tvSweep .65s linear infinite;opacity:.9}
+.tv-emoji:after{content:none!important;display:none!important}
+@keyframes tvNoise{0%{transform:translate(1px,-1px);filter:contrast(1.7)}50%{transform:translate(-2px,1px);filter:contrast(.8)}100%{transform:translate(1px,0);filter:contrast(1.5)}}
+@keyframes tvSweep{from{transform:translateY(-8px)}to{transform:translateY(34px)}}
+@keyframes tvBodyJolt{0%,82%,100%{transform:translate(0)}84%{transform:translate(-3px,1px)}86%{transform:translate(3px,-1px)}88%{transform:translate(-1px,0)}}
+.popcorn-emoji{width:94px;height:76px;display:flex;align-items:center;justify-content:center;overflow:visible}
+.popcorn-cup{position:relative;z-index:2;display:block;font-size:3.1rem;filter:drop-shadow(0 0 9px #ffd166)}
+.pop-kernel{position:absolute;z-index:3;left:45%;top:6px;font-style:normal;font-size:1rem;opacity:0;animation:kernelDrop 1.25s ease-in infinite}
+.pop-kernel.p2{left:20%;animation-delay:.25s}.pop-kernel.p3{left:68%;animation-delay:.5s}.pop-kernel.p4{left:35%;animation-delay:.75s}.pop-kernel.p5{left:58%;animation-delay:1s}
+.popcorn-emoji:before,.popcorn-emoji:after{content:none!important;display:none!important}
+@keyframes kernelDrop{0%{opacity:0;transform:translateY(-12px) scale(.45) rotate(-20deg)}15%{opacity:1}85%{opacity:1}100%{opacity:0;transform:translateY(52px) scale(.8) rotate(55deg)}}
+.banner,.clock-card,.telegram-banner,.install-banner,.choice,.order{box-shadow:0 0 0 1px #ffffff12,0 0 12px var(--edge-neon,#ff304f),0 0 26px color-mix(in srgb,var(--edge-neon,#ff304f) 30%,transparent)}
+.banner{--edge-neon:#ff304f}.clock-card{--edge-neon:#39ff88}.telegram-banner{--edge-neon:#36d9ff}.install-banner{--edge-neon:#bd5bff}.choice:nth-child(4n+1){--edge-neon:#ff304f}.choice:nth-child(4n+2){--edge-neon:#39ff88}.order{--edge-neon:#bd5bff}
+@media(prefers-reduced-motion:reduce){.tv-emoji,.tv-static,.tv-scan,.popcorn-emoji,.pop-kernel{animation:none!important}}
+
 </style></head>
 <body><div id="bienvenida-cine" role="status" aria-label="Bienvenido a mi web de series y películas"><div class="cortina izquierda"></div><div class="cortina derecha"></div><div class="contenido-bienvenida"><p class="titulo-bienvenida">Bienvenido a mi web de series y películas</p><div class="marco-progreso" aria-label="Carga de bienvenida"><div class="barra-progreso"></div></div><span class="porcentaje" id="porcentaje-cine">0%</span><p class="frase-bienvenida">💸 Deja de pagar por plataformas. Aquí puedes obtener el mismo resultado. 🍿✨</p></div></div><header><div class="banner"><h1>🎬 Zona Entretenimiento</h1><div class="by">by Cedillo ©®™</div></div><p class="greeting"><span id="saludoIcono" class="sun">☀️</span> <span id="saludoTexto">¡Buenos días!</span></p><section class="clock-card" aria-live="polite"><div class="clock-thanks"><span class="clock-spark">✨</span> ¡Gracias por visitarme hoy! 💖</div><div class="clock-date">📅 <span id="fechaActual"></span></div><div class="clock-time"><span class="clock-spark">🕒</span> <span id="horaActual"></span></div><div>🌟 Que tengas un excelente día 🌟</div></section><a class="telegram-banner" href="https://play.google.com/store/apps/details?id=org.telegram.messenger" target="_blank" rel="noopener noreferrer"><span class="telegram-icon">✈️</span>Para que la magia suceda tienes que instalar Telegram. ¡Da clic aquí e instálalo!<small>📲 Toca este banner para abrir Google Play y descargar Telegram.</small></a><section class="install-banner" id="install-banner"><div class="install-row"><div class="install-symbol" aria-hidden="true">🎬</div><div class="install-copy"><h2 class="install-title">Instala Zona Entretenimiento en tu celular</h2><p>Series, películas y pedidos en un solo lugar. Agrégala a tu pantalla de inicio y ábrela como una app.</p></div></div><button class="install-button" id="install-button" type="button">📲 INSTALAR MI APP</button><p class="install-note" id="install-note">La instalación te pedirá confirmación en tu dispositivo.</p></section></header>
 <aside id="mensaje-amistoso" role="status" aria-live="polite" aria-atomic="true"><span class="popup-etiqueta">💌 Un mensajito de Zona Entretenimiento</span><p class="popup-texto" id="popup-texto"></p><button id="cerrar-mensaje" type="button" aria-label="Cerrar mensaje">✕</button></aside>
