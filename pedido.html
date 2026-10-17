@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#090817">
-<title>Pedidos y reportes | Zona de Entretenimiento</title>
+<title>Pedidos y problemas | Zona de Entretenimiento</title>
 <link rel="stylesheet" href="style.css?v=20261017-3">
 <style>
 :root{color-scheme:dark;--bg:#090817;--panel:#141329;--ink:#f7f4ff;--muted:#b9b4d1;--pink:#ff3bd4;--blue:#43e8ff;--green:#8dffb0}
@@ -26,7 +26,7 @@ main{width:min(100% - 28px,560px);margin:0 auto;padding:26px 0 34px}
 .mode-btn:hover{transform:translateY(-2px) scale(1.02)}
 .mode-btn.active{border-color:#43e8ff;box-shadow:0 0 18px #43e8ff38,inset 0 0 18px #43e8ff0d;background:linear-gradient(130deg,#211333,#102432)}
 .report-banner{margin:0 0 22px}
-.report-banner[hidden],#reporte-fields[hidden]{display:none!important}
+.report-banner{margin:26px 0 22px}.report-banner .neon-inner h2{margin:0;font-size:clamp(1.25rem,5vw,1.7rem);color:#fff}
 .report-banner .neon-inner h2{margin:0;font-size:clamp(1.25rem,5vw,1.7rem);color:#fff}
 @media(max-width:390px){.mode-switch{grid-template-columns:1fr}}
 label,.field-title{display:block;margin:0 0 8px;font-size:.94rem;font-weight:700;color:#f5efff}
@@ -79,22 +79,12 @@ footer{text-align:center;color:#9e98bb;font-size:.82rem;padding:12px 16px 24px}
 </head>
 <body>
 <main>
-<section class="neon-banner" aria-label="Haz aquí tu pedido de series o películas">
-  <div class="neon-inner">
-    <p class="eyebrow"><span>🎬</span> ZONA DE ENTRETENIMIENTO <span>🍿</span></p>
-    <h1><span class="float-emoji">✨</span> Pedidos y reportes <span class="float-emoji">🎉</span></h1>
-    <p>¿Quieres pedir contenido o reportar una falla? Aquí te escuchamos. 💖</p>
-  </div>
+<section class="neon-banner" aria-label="Realiza tu pedido de serie o película">
+  <div class="neon-inner"><p class="eyebrow"><span>🎬</span> TU PRÓXIMO MARATÓN EMPIEZA AQUÍ <span>🍿</span></p><h1><span class="float-emoji">✨</span> ¡Realiza tu pedido de serie o película aquí! <span class="float-emoji">🎉</span></h1><p>Cuéntanos qué título te gustaría encontrar en el catálogo. 💖</p></div>
 </section>
-
+<form id="pedido-form">
 <section class="form-card" id="form-card">
-  <div class="mode-switch" role="group" aria-label="Elige qué deseas hacer">
-    <button type="button" class="mode-btn active" id="modo-pedido" aria-pressed="true">🎬 Hacer un pedido</button>
-    <button type="button" class="mode-btn" id="modo-reporte" aria-pressed="false">🛠️ Reportar un problema</button>
-  </div>
-  <p class="intro" id="form-intro"><span class="intro-emoji">🎥</span> ¿Qué película o serie te gustaría que agregáramos al catálogo? <span class="intro-emoji">🍿</span></p>
-  <div class="neon-banner report-banner" id="report-banner" hidden><div class="neon-inner"><p class="eyebrow"><span>🛠️</span> AYÚDANOS A MEJORAR <span>💜</span></p><h2>¿Quieres reportar un problema?</h2><p>Indícanos qué sucede y revisaremos el reporte.</p></div></div>
-  <form id="pedido-form">
+  <p class="intro"><span class="intro-emoji">🎥</span> ¿Qué película o serie te gustaría que agregáramos al catálogo? <span class="intro-emoji">🍿</span></p>
     <div class="field">
       <label for="titulo">Nombre de la película o serie</label>
       <input id="titulo" name="titulo" placeholder="Ej. La bruja, Wednesday, Spider-Man…" maxlength="120" autocomplete="off" required>
@@ -113,7 +103,8 @@ footer{text-align:center;color:#9e98bb;font-size:.82rem;padding:12px 16px 24px}
       <label for="nombre">Tu nombre <span style="font-weight:400;color:#b9b4d1">(opcional)</span></label>
       <input id="nombre" name="nombre" placeholder="¿Cómo te llamas?" maxlength="60" autocomplete="name">
     </div>
-    <div id="reporte-fields" hidden>
+    <div class="neon-banner report-banner" id="report-banner"><div class="neon-inner"><p class="eyebrow"><span>🛠️</span> ¿NECESITAS AYUDA? <span>💜</span></p><h2>¿Tienes algún problema con alguna serie o película? ¡Repórtalo aquí!</h2><p>Elige lo que está fallando y cuéntanos los detalles para poder revisarlo. 🧰✨</p></div></div>
+    <div id="reporte-fields">
       <div class="field">
         <label for="reporte-tipo">¿El problema es con una película o una serie?</label>
         <select id="reporte-tipo"><option value="Película">🎞️ Película</option><option value="Serie">📺 Serie</option></select>
@@ -145,10 +136,12 @@ footer{text-align:center;color:#9e98bb;font-size:.82rem;padding:12px 16px 24px}
         <label for="reporte-nombre">Tu nombre <span style="font-weight:400;color:#b9b4d1">(opcional)</span></label>
         <input id="reporte-nombre" placeholder="¿Cómo te llamas?" maxlength="60" autocomplete="name">
       </div>
+      <button class="submit-btn" id="enviar-reporte" type="submit"><span class="float-emoji">🛠️</span> ENVIAR REPORTE DE PROBLEMA 💜</button>
     </div>
-    <button class="submit-btn" id="enviar" type="submit"><span class="float-emoji">🚀</span> ¡CONFIRMA TU PEDIDO! 🎉</button>
+    <button class="submit-btn" id="enviar-pedido" type="submit"><span class="float-emoji">🚀</span> ¡ENVIAR MI PEDIDO! 🎉</button>
     <p class="status" id="msg" role="status" aria-live="polite"></p>
-  </form>
+  </div>
+</form>
 </section>
 
 <section class="success" id="success" role="status" aria-live="polite">
@@ -162,32 +155,13 @@ footer{text-align:center;color:#9e98bb;font-size:.82rem;padding:12px 16px 24px}
 <footer>Creado por Cedillo ©️</footer>
 <script>
 var ENDPOINT="https://script.google.com/macros/s/AKfycbx7FefyHQXWIiqgnSqXJ31TmrLurHXRkgKwJkEZttrXR9s0iTCCK_9tlrnXw5FYPpVLFQ/exec";
-var form=document.getElementById("pedido-form"),msg=document.getElementById("msg"),enviar=document.getElementById("enviar");
-var modo="pedido";
-var pedidoFields=Array.from(form.querySelectorAll(".field")).filter(function(el){return el.closest("#reporte-fields")===null});
-var reporteFields=document.getElementById("reporte-fields");
-function setModo(nuevo){
-  modo=nuevo;
-  document.getElementById("modo-pedido").classList.toggle("active",modo==="pedido");
-  document.getElementById("modo-reporte").classList.toggle("active",modo==="reporte");
-  document.getElementById("modo-pedido").setAttribute("aria-pressed",modo==="pedido");
-  document.getElementById("modo-reporte").setAttribute("aria-pressed",modo==="reporte");
-  pedidoFields.forEach(function(el){el.hidden=modo!=="pedido";});
-  reporteFields.hidden=modo!=="reporte";
-  document.getElementById("form-intro").hidden=modo==="reporte";
-  document.getElementById("report-banner").hidden=modo!=="reporte";
-  document.getElementById("titulo").required=modo==="pedido";
-  document.getElementById("reporte-titulo").required=modo==="reporte";
-  enviar.innerHTML=modo==="pedido"?"<span class='float-emoji'>🚀</span> ¡CONFIRMA TU PEDIDO! 🎉":"<span class='float-emoji'>🛠️</span> ENVIAR REPORTE DE FALLA";
-  msg.textContent="";
-}
-document.getElementById("modo-pedido").addEventListener("click",function(){setModo("pedido")});
-document.getElementById("modo-reporte").addEventListener("click",function(){setModo("reporte")});
+var form=document.getElementById("pedido-form"),msg=document.getElementById("msg");
 form.addEventListener("submit",function(event){
   event.preventDefault();
-  var esReporte=modo==="reporte";
+  var esReporte=event.submitter&&event.submitter.id==="enviar-reporte";
+  var enviar=esReporte?document.getElementById("enviar-reporte"):document.getElementById("enviar-pedido");
   var titulo=(document.getElementById(esReporte?"reporte-titulo":"titulo").value||"").trim();
-  if(!titulo){msg.textContent=esReporte?"Escribe el nombre de la película o serie que presenta el problema.":"Escribe el nombre de la película o serie que buscas 🙂";return}
+  if(!titulo){msg.textContent=esReporte?"Escribe el nombre de la película o serie que presenta el problema.":"Escribe el nombre de la película o serie que buscas 🙂";document.getElementById(esReporte?"reporte-titulo":"titulo").focus();return}
   enviar.disabled=true;enviar.textContent=esReporte?"⏳ ENVIANDO REPORTE…":"⏳ ENVIANDO TU PEDIDO…";
   msg.textContent=esReporte?"Un momento, estamos enviando tu reporte.":"Un momento, estamos enviando tu pedido.";
   var problema=esReporte?document.getElementById("problema").value:"";
@@ -203,13 +177,14 @@ form.addEventListener("submit",function(event){
   .then(function(){
     document.getElementById("form-card").style.display="none";
     document.getElementById("success-title").textContent=esReporte?"¡Gracias por reportar la falla!":"¡Tu pedido ha sido recibido!";
-    document.getElementById("success-copy").textContent=esReporte?"Recibimos tu reporte. Gracias por ayudarnos a mantener Zona de Entretenimiento funcionando mejor.":"Gracias por ayudarnos a mejorar el catálogo. En breve te avisaremos cuando el título que pediste esté disponible en nuestra plataforma.";
+    document.getElementById("success-copy").textContent=esReporte?"Gracias por avisarnos. Recibimos el envío desde esta página; revisaremos el registro en la hoja para confirmar que se guardó correctamente.":"Gracias por ayudarnos a mejorar el catálogo. En breve te avisaremos cuando el título que pediste esté disponible en nuestra plataforma.";
     document.getElementById("success").style.display="block";
     window.scrollTo({top:0,behavior:"smooth"});
   })
   .catch(function(){
     msg.textContent="No se pudo enviar en este momento. Revisa tu conexión e inténtalo otra vez.";
-    enviar.disabled=false;setModo(modo);
+    enviar.disabled=false;
+    enviar.innerHTML=esReporte?"<span class='float-emoji'>🛠️</span> ENVIAR REPORTE DE PROBLEMA 💜":"<span class='float-emoji'>🚀</span> ¡ENVIAR MI PEDIDO! 🎉";
   });
 });
 </script>
