@@ -19,7 +19,7 @@ main{width:min(950px,100%);margin:0 auto;padding:26px 18px 38px;text-align:cente
 :root{--neon-red:#ff304f;--neon-green:#39ff88;--neon-blue:#36d9ff;--neon-purple:#bd5bff}
 .banner,.card,.btn,.vacio{position:relative;isolation:isolate}
 .banner:after,.card:after,.btn:after,.vacio:after{content:"";position:absolute;inset:0;padding:2px;border-radius:inherit;pointer-events:none;z-index:5;background:conic-gradient(from 0deg,transparent 0 68%,var(--edge-neon,var(--neon-red)) 76%,transparent 88% 100%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:catalogNeonSpin 2.7s linear infinite}
-@keyframes catalogNeonSpin{to{transform:rotate(360deg)}}
+@keyframes catalogNeonSpin{to{transform:rotate(-360deg)}}
 .banner{--edge-neon:var(--neon-red);border-color:#ffffff30}
 .card:nth-child(4n+1){--edge-neon:var(--neon-red)}
 .card:nth-child(4n+2){--edge-neon:var(--neon-green)}
