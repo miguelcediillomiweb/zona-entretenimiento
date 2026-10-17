@@ -13,3 +13,14 @@
 .card:nth-child(4n+1){--edge-neon:#ff304f}.card:nth-child(4n+2){--edge-neon:#39ff88}.card:nth-child(4n+3){--edge-neon:#36d9ff}.card:nth-child(4n){--edge-neon:#bd5bff}
 @keyframes catalogCardEdge{to{transform:rotate(-360deg)}}
 @media(prefers-reduced-motion:reduce){.card:after{animation:none}}
+
+/* Tarjetas visuales para separar temporadas y mostrar su póster */
+.season-block{margin:22px 0 28px;padding:14px;border:1px solid #ffffff20;border-radius:18px;background:linear-gradient(145deg,#17152c,#10101f);box-shadow:0 8px 24px #0004}
+.season-heading{display:flex;align-items:center;gap:14px;margin-bottom:12px}
+.season-cover{position:relative;flex:0 0 94px;width:94px;aspect-ratio:2/3;overflow:hidden;border-radius:12px;background:linear-gradient(145deg,#24205a,#8b245d);display:flex;align-items:center;justify-content:center;text-align:center;padding:7px;box-shadow:0 4px 14px #0008}
+.season-cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.season-placeholder{white-space:pre-line;font-weight:800;line-height:1.4;color:#fff;text-shadow:0 2px 8px #000}
+.season-info{min-width:0}
+.season-title{margin:0 0 6px;font-size:1.15rem;color:var(--text)}
+.season-count{margin:0;color:var(--muted,#b9b4d1);font-size:.9rem}
+.season-block .item{width:100%}
