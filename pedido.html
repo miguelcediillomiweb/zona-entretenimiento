@@ -1,36 +1,157 @@
 <!DOCTYPE html>
-<html lang="es"><head>
+<html lang="es">
+<head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Haz tu pedido - Zona de Entretenimiento</title>
+<meta name="theme-color" content="#090817">
+<title>Haz tu pedido | Zona de Entretenimiento</title>
 <link rel="stylesheet" href="style.css">
-</head><body><main>
-<section class="banner"><h1>✨ Haz tu pedido</h1><p>Dime qué serie o película quieres</p></section>
-<section class="banner2" style="text-align:left">
-<label for="tipo">¿Qué buscas?</label>
-<select id="tipo"><option>Película</option><option>Serie</option></select>
-<label for="titulo">Título</label>
-<input id="titulo" placeholder="Ej. Spider-Man 2" maxlength="120">
-<label for="nombre">Tu nombre (opcional)</label>
-<input id="nombre" maxlength="60">
-<label for="nota">Comentario (opcional)</label>
-<textarea id="nota" rows="2" maxlength="300"></textarea>
-<button class="btn" id="enviar">Enviar pedido</button>
-<p class="msg" id="msg"></p>
+<style>
+:root{color-scheme:dark;--bg:#090817;--panel:#141329;--ink:#f7f4ff;--muted:#b9b4d1;--pink:#ff3bd4;--blue:#43e8ff;--green:#8dffb0}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 50% 0%,#24205a 0%,var(--bg) 56%);color:var(--ink);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+main{width:min(100% - 28px,560px);margin:0 auto;padding:26px 0 34px}
+.neon-banner{position:relative;isolation:isolate;overflow:hidden;border-radius:24px;padding:3px;margin:4px 0 25px;background:conic-gradient(from 0deg,var(--pink),#8b5cff,var(--blue),#9dffdf,var(--pink));animation:ring-spin 5s linear infinite;box-shadow:0 0 13px #ff3bd477,0 0 30px #43e8ff33}
+.neon-banner:before{content:"";position:absolute;inset:0;z-index:-1;background:inherit;filter:blur(13px);opacity:.8}
+.neon-inner{border-radius:21px;text-align:center;padding:27px 18px 25px;background:linear-gradient(145deg,#100d29,#17122e 60%,#0b192d)}
+.neon-inner .eyebrow{margin:0 0 9px;color:var(--blue);font-size:.75rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase}
+.neon-inner h1{margin:0;font-size:clamp(1.55rem,6vw,2.15rem);line-height:1.18;text-shadow:0 0 13px #ff3bd4aa}
+.neon-inner p{margin:12px 0 0;color:#d8d4ee;line-height:1.5}
+@keyframes ring-spin{to{filter:hue-rotate(360deg)}}
+.form-card{background:linear-gradient(160deg,#17152c,#11101f);border:1px solid #ffffff18;border-radius:22px;padding:22px 18px;box-shadow:0 18px 48px #0005}
+.intro{margin:0 0 22px;font-size:1.08rem;font-weight:750;line-height:1.4}
+.field{margin:0 0 18px}
+label,.field-title{display:block;margin:0 0 8px;font-size:.94rem;font-weight:700;color:#f5efff}
+.hint{display:block;margin-top:6px;color:var(--muted);font-size:.82rem;line-height:1.45}
+input,select,textarea{display:block;width:100%;min-height:49px;padding:13px 14px;border:1px solid #ffffff28;border-radius:13px;background:#090817;color:var(--ink);font:inherit;outline:none}
+textarea{min-height:88px;resize:vertical}
+input:focus,select:focus,textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px #43e8ff20}
+input[type=file]{min-height:unset;padding:12px;border-style:dashed;background:#0b0a1a;font-size:.9rem}
+#preview-wrap{display:none;margin-top:12px}
+#preview{display:block;max-width:100%;max-height:230px;margin:auto;border-radius:12px;border:1px solid #ffffff25}
+#file-name{color:var(--green);font-size:.85rem;text-align:center;margin-top:7px;overflow-wrap:anywhere}
+.submit-btn{position:relative;isolation:isolate;display:block;width:100%;min-height:54px;border:0;border-radius:15px;margin-top:8px;padding:14px 16px;background:linear-gradient(100deg,#ff3bd4,#8b5cff 55%,#32dfff);color:#100b25;font:inherit;font-weight:900;font-size:1.02rem;cursor:pointer;box-shadow:0 0 18px #b23cff4d;animation:button-glow 2.4s ease-in-out infinite}
+.submit-btn:disabled{opacity:.65;animation:none;cursor:wait}
+@keyframes button-glow{50%{box-shadow:0 0 25px #ff3bd477,0 0 35px #43e8ff22}}
+.status{margin:14px 0 0;text-align:center;color:#ffd5f5;line-height:1.5}
+.success{display:none;text-align:center;padding:28px 20px;border:1px solid #8dffb077;border-radius:20px;background:linear-gradient(145deg,#10271f,#11182a);box-shadow:0 0 26px #8dffb01b}
+.success .check{font-size:3rem}
+.success h2{margin:8px 0 12px;color:var(--green);font-size:1.55rem}
+.success p{color:#e4f5eb;line-height:1.65}
+.btn-home{display:block;text-align:center;margin:19px auto 0;color:#ddd8ff;text-decoration:none;font-weight:700;padding:12px}
+footer{text-align:center;color:#9e98bb;font-size:.82rem;padding:12px 16px 24px}
+@media(prefers-reduced-motion:reduce){.neon-banner,.submit-btn{animation:none}}
+</style>
+</head>
+<body>
+<main>
+<section class="neon-banner" aria-label="Haz aquí tu pedido de series o películas">
+  <div class="neon-inner">
+    <p class="eyebrow">🎬 Zona de Entretenimiento</p>
+    <h1>✨ Haz aquí tu pedido de series o películas ✨</h1>
+    <p>¡Tú eliges qué sigue! Cuéntanos qué te gustaría ver.</p>
+  </div>
 </section>
-<a class="btn alt" href="index.html">🏠 Volver al inicio</a>
-</main><footer>Creado por Cedillo ©️</footer>
+
+<section class="form-card" id="form-card">
+  <p class="intro">¿Qué película o serie te gustaría que agregáramos al catálogo?</p>
+  <form id="pedido-form">
+    <div class="field">
+      <label for="titulo">Nombre de la película o serie</label>
+      <input id="titulo" name="titulo" placeholder="Ej. La bruja, Wednesday, Spider-Man…" maxlength="120" autocomplete="off" required>
+      <span class="hint">Escribe el título como lo recuerdes.</span>
+    </div>
+    <div class="field">
+      <label for="tipo">¿Qué deseas agregar?</label>
+      <select id="tipo" name="tipo"><option value="Película">🎞️ Película</option><option value="Serie">📺 Serie</option></select>
+    </div>
+    <div class="field">
+      <label for="referencia">¿Recuerdas el año o la plataforma donde la viste?</label>
+      <input id="referencia" name="referencia" placeholder="Ej. 2023, Netflix, Prime Video…" maxlength="160">
+      <span class="hint">Este dato nos ayuda a identificar el título correcto.</span>
+    </div>
+    <div class="field">
+      <label for="nombre">Tu nombre <span style="font-weight:400;color:#b9b4d1">(opcional)</span></label>
+      <input id="nombre" name="nombre" placeholder="¿Cómo te llamas?" maxlength="60" autocomplete="name">
+    </div>
+    <div class="field">
+      <span class="field-title">📸 ¿Tienes una imagen o póster?</span>
+      <label for="imagen" style="font-weight:500;color:#dcd6f3">Adjunta una foto para ayudarnos a identificarla más rápido.</label>
+      <input id="imagen" name="imagen" type="file" accept="image/*" capture="environment">
+      <span class="hint">Opcional. Si tienes una imagen, ¡mucho mejor!</span>
+      <div id="preview-wrap"><img id="preview" alt="Vista previa de la imagen seleccionada"><div id="file-name"></div></div>
+    </div>
+    <button class="submit-btn" id="enviar" type="submit">🚀 CONFIRMA TU PEDIDO</button>
+    <p class="status" id="msg" role="status" aria-live="polite"></p>
+  </form>
+</section>
+
+<section class="success" id="success" role="status" aria-live="polite">
+  <div class="check">🎉✅</div>
+  <h2>¡Tu pedido ha sido recibido!</h2>
+  <p>Gracias por ayudarnos a mejorar el catálogo. En breve te avisaremos cuando el título que pediste esté disponible en nuestra plataforma.</p>
+  <p>¡Gracias por disfrutar de Zona de Entretenimiento!</p>
+</section>
+<a class="btn-home" href="index.html">🏠 Volver al inicio</a>
+</main>
+<footer>Creado por Cedillo ©️</footer>
 <script>
 var ENDPOINT="https://script.google.com/macros/s/AKfycbx7FefyHQXWIiqgnSqXJ31TmrLurHXRkgKwJkEZttrXR9s0iTCCK_9tlrnXw5FYPpVLFQ/exec";
-var m=document.getElementById("msg");
-document.getElementById("enviar").onclick=function(){
+var form=document.getElementById("pedido-form");
+var msg=document.getElementById("msg");
+var enviar=document.getElementById("enviar");
+var imagen=document.getElementById("imagen");
+var imagenData="";
+imagen.addEventListener("change",function(){
+  var file=imagen.files&&imagen.files[0];
+  var wrap=document.getElementById("preview-wrap");
+  if(!file){imagenData="";wrap.style.display="none";return}
+  if(!file.type.startsWith("image/")){msg.textContent="Selecciona un archivo de imagen.";imagen.value="";return}
+  if(file.size>8*1024*1024){msg.textContent="La imagen pesa más de 8 MB. Elige una más pequeña.";imagen.value="";return}
+  var reader=new FileReader();
+  reader.onload=function(){
+    var source=new Image();
+    source.onload=function(){
+      var max=1000,scale=Math.min(1,max/Math.max(source.width,source.height));
+      var canvas=document.createElement("canvas");
+      canvas.width=Math.round(source.width*scale);canvas.height=Math.round(source.height*scale);
+      canvas.getContext("2d").drawImage(source,0,0,canvas.width,canvas.height);
+      imagenData=canvas.toDataURL("image/jpeg",0.72);
+      document.getElementById("preview").src=imagenData;
+      document.getElementById("file-name").textContent="Imagen lista: "+file.name;
+      wrap.style.display="block";msg.textContent="";
+    };
+    source.onerror=function(){msg.textContent="No pudimos leer esa imagen. Prueba con otra.";};
+    source.src=reader.result;
+  };
+  reader.readAsDataURL(file);
+});
+form.addEventListener("submit",function(event){
+  event.preventDefault();
   var titulo=document.getElementById("titulo").value.trim();
-  if(!titulo){m.textContent="Escribe el título que buscas 🙂";return}
-  m.textContent="Enviando...";
-  fetch(ENDPOINT,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain"},body:JSON.stringify({
-    tipo:document.getElementById("tipo").value,titulo:titulo,
-    nombre:document.getElementById("nombre").value.trim(),nota:document.getElementById("nota").value.trim()})})
-  .then(function(){m.textContent="¡Pedido enviado! 🎉 Gracias.";document.getElementById("titulo").value="";document.getElementById("nota").value=""})
-  .catch(function(){m.textContent="No se pudo enviar. Intenta de nuevo."});
-};
-</script></body></html>
+  if(!titulo){msg.textContent="Escribe el nombre de la película o serie que buscas 🙂";return}
+  if(imagen.files&&imagen.files.length&&!imagenData){msg.textContent="Espera a que termine de preparar la imagen.";return}
+  enviar.disabled=true;enviar.textContent="⏳ ENVIANDO TU PEDIDO…";msg.textContent="Un momento, estamos enviando tu pedido.";
+  var payload={
+    tipo:document.getElementById("tipo").value,
+    titulo:titulo,
+    nombre:document.getElementById("nombre").value.trim(),
+    nota:document.getElementById("referencia").value.trim(),
+    referencia:document.getElementById("referencia").value.trim(),
+    imagen:imagenData,
+    imagenNombre:imagen.files&&imagen.files[0]?imagen.files[0].name:""
+  };
+  fetch(ENDPOINT,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain"},body:JSON.stringify(payload)})
+  .then(function(){
+    document.getElementById("form-card").style.display="none";
+    document.getElementById("success").style.display="block";
+    window.scrollTo({top:0,behavior:"smooth"});
+  })
+  .catch(function(){
+    msg.textContent="No se pudo enviar en este momento. Revisa tu conexión e inténtalo otra vez.";
+    enviar.disabled=false;enviar.textContent="🚀 CONFIRMA TU PEDIDO";
+  });
+});
+</script>
+</body>
+</html>
