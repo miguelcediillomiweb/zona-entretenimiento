@@ -52,7 +52,7 @@ main{width:min(900px,100%);margin:auto;padding:16px 18px 40px;text-align:center}
 :root{--neon-red:#ff304f;--neon-green:#39ff88;--neon-blue:#36d9ff;--neon-purple:#bd5bff;--neon-gold:#ffd166}
 .banner,.clock-card,.telegram-banner,.install-banner,.choice,.order,.neon-banner,.form-card,.success{position:relative;isolation:isolate}
 .banner:after,.clock-card:after,.telegram-banner:after,.install-banner:after,.choice:after,.order:after,.neon-banner:after,.form-card:after,.success:after{content:"";position:absolute;inset:0;padding:2px;border-radius:inherit;pointer-events:none;z-index:5;background:conic-gradient(from 0deg,transparent 0 68%,var(--edge-neon,#ff304f) 76%,transparent 88% 100%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:neonEdgeSpin 2.7s linear infinite}
-@keyframes neonEdgeSpin{to{transform:rotate(360deg)}}
+@keyframes neonEdgeSpin{to{transform:rotate(-360deg)}}
 .banner{--edge-neon:var(--neon-red);border-color:#ffffff22}
 .clock-card{--edge-neon:var(--neon-green)}
 .telegram-banner{--edge-neon:var(--neon-blue)}
@@ -61,7 +61,7 @@ main{width:min(900px,100%);margin:auto;padding:16px 18px 40px;text-align:center}
 .choice:nth-child(2){--edge-neon:var(--neon-green)}
 .order{--edge-neon:var(--neon-blue)}
 /* Televisión analógica: estática, líneas de barrido y pequeños saltos */
-.tv-emoji{width:94px;height:94px;display:grid;place-items:center;position:relative;isolation:isolate;font-size:3.15rem;overflow:visible;animation:tvBodyJolt 1.9s steps(2,end) infinite}
+.tv-emoji:after{content:none!important;display:none!important}.tv-emoji{width:94px;height:94px;display:grid;place-items:center;position:relative;isolation:isolate;font-size:3.15rem;overflow:visible;animation:tvBodyJolt 1.9s steps(2,end) infinite}
 .tv-symbol{position:relative;z-index:1;display:block;animation:tvFlicker .16s steps(2,end) infinite;filter:drop-shadow(0 0 9px #36d9ff99)}
 .tv-static{position:absolute;z-index:2;left:23%;top:23%;width:45%;height:32%;border-radius:4px;pointer-events:none;opacity:.85;background:repeating-radial-gradient(circle at 25% 40%,#fff 0 1px,#a8f7ff 1px 2px,#101025 2px 3px,transparent 3px 4px),repeating-linear-gradient(0deg,#ffffffc9 0 1px,#20203a 1px 3px,#a8f7ff88 3px 4px);background-size:13px 11px,100% 7px;mix-blend-mode:screen;animation:tvNoise .12s steps(3,end) infinite}
 .tv-scan{position:absolute;z-index:3;left:23%;top:23%;width:45%;height:32%;border-radius:4px;pointer-events:none;background:repeating-linear-gradient(0deg,transparent 0 3px,#8df5ff9c 4px 5px,transparent 6px 8px);animation:tvScan .8s linear infinite}
