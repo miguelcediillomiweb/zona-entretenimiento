@@ -101,7 +101,7 @@ main{width:min(900px,100%);margin:auto;padding:16px 18px 40px;text-align:center}
 .pop-kernel{position:absolute;z-index:3;left:45%;top:6px;font-style:normal;font-size:1rem;opacity:0;animation:kernelDrop 1.25s ease-in infinite}
 .pop-kernel.p2{left:20%;animation-delay:.25s}.pop-kernel.p3{left:68%;animation-delay:.5s}.pop-kernel.p4{left:35%;animation-delay:.75s}.pop-kernel.p5{left:58%;animation-delay:1s}
 .popcorn-emoji:before,.popcorn-emoji:after{content:none!important;display:none!important}
-@keyframes kernelDrop{0%{opacity:0;transform:translateY(-12px) scale(.45) rotate(-20deg)}15%{opacity:1}85%{opacity:1}100%{opacity:0;transform:translateY(52px) scale(.8) rotate(55deg)}}
+@keyframes kernelDrop{0%,100%{opacity:0;transform:translate(0,8px) scale(.45) rotate(0)}12%{opacity:1}32%{opacity:1;transform:translate(-4px,-25px) scale(.95) rotate(-22deg)}52%{opacity:1;transform:translate(4px,-17px) scale(.85) rotate(18deg)}72%{opacity:.9;transform:translate(-2px,-5px) scale(.7) rotate(-8deg)}88%{opacity:.3;transform:translate(0,5px) scale(.55) rotate(0)}}
 .banner,.clock-card,.telegram-banner,.install-banner,.choice,.order{box-shadow:0 0 0 1px #ffffff12,0 0 12px var(--edge-neon,#ff304f),0 0 26px color-mix(in srgb,var(--edge-neon,#ff304f) 30%,transparent)}
 .banner{--edge-neon:#ff304f}.clock-card{--edge-neon:#39ff88}.telegram-banner{--edge-neon:#36d9ff}.install-banner{--edge-neon:#bd5bff}.choice:nth-child(4n+1){--edge-neon:#ff304f}.choice:nth-child(4n+2){--edge-neon:#39ff88}.order{--edge-neon:#bd5bff}
 @media(prefers-reduced-motion:reduce){.tv-emoji,.tv-static,.tv-scan,.popcorn-emoji,.pop-kernel{animation:none!important}}
