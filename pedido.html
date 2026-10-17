@@ -14,12 +14,12 @@ main{width:min(100% - 28px,560px);margin:0 auto;padding:26px 0 34px}
 .neon-banner{position:relative;isolation:isolate;overflow:hidden;border-radius:24px;padding:3px;margin:4px 0 25px;background:conic-gradient(from 0deg,var(--pink),#8b5cff,var(--blue),#9dffdf,var(--pink));animation:ring-spin 5s linear infinite;box-shadow:0 0 13px #ff3bd477,0 0 30px #43e8ff33}
 .neon-banner:before{content:"";position:absolute;inset:0;z-index:-1;background:inherit;filter:blur(13px);opacity:.8}
 .neon-inner{border-radius:21px;text-align:center;padding:27px 18px 25px;background:linear-gradient(145deg,#100d29,#17122e 60%,#0b192d)}
-.neon-inner .eyebrow{margin:0 0 9px;color:var(--blue);font-size:.75rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase}
-.neon-inner h1{margin:0;font-size:clamp(1.55rem,6vw,2.15rem);line-height:1.18;text-shadow:0 0 13px #ff3bd4aa}
+.neon-inner .eyebrow{margin:0 0 13px;color:#fff0a8;font-size:.78rem;font-weight:900;letter-spacing:.2em;text-transform:uppercase;animation:eyebrowBounce 2.2s ease-in-out infinite;text-shadow:0 0 14px #ffd16688}.neon-inner .eyebrow span{display:inline-block;animation:emojiDance 1.7s ease-in-out infinite}.neon-inner .eyebrow span:last-child{animation-delay:.35s}
+.neon-inner h1{margin:0;font-size:clamp(1.55rem,6vw,2.15rem);line-height:1.18;background:linear-gradient(90deg,#fff,#ffb8f1,#8df5ff,#fff0a8);background-size:220% auto;background-clip:text;-webkit-background-clip:text;color:transparent;text-shadow:0 0 22px #ff3bd455;animation:titleShimmer 4s linear infinite}.neon-inner h1 .float-emoji{display:inline-block;color:#fff;animation:emojiDance 1.8s ease-in-out infinite}.neon-inner h1 .float-emoji:last-child{animation-delay:.4s}
 .neon-inner p{margin:12px 0 0;color:#d8d4ee;line-height:1.5}
 @keyframes ring-spin{to{filter:hue-rotate(360deg)}}
 .form-card{background:linear-gradient(160deg,#17152c,#11101f);border:1px solid #ffffff18;border-radius:22px;padding:22px 18px;box-shadow:0 18px 48px #0005}
-.intro{margin:0 0 22px;font-size:1.08rem;font-weight:750;line-height:1.4}
+.intro{margin:0 0 22px;font-size:1.08rem;font-weight:800;line-height:1.5;color:#fff0ff}.intro .intro-emoji{display:inline-block;animation:emojiDance 1.5s ease-in-out infinite}
 .field{margin:0 0 18px}
 label,.field-title{display:block;margin:0 0 8px;font-size:.94rem;font-weight:700;color:#f5efff}
 .hint{display:block;margin-top:6px;color:var(--muted);font-size:.82rem;line-height:1.45}
@@ -27,8 +27,8 @@ input,select,textarea{display:block;width:100%;min-height:49px;padding:13px 14px
 textarea{min-height:88px;resize:vertical}
 input:focus,select:focus,textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px #43e8ff20}
 .submit-btn{position:relative;isolation:isolate;display:block;width:100%;min-height:54px;border:0;border-radius:15px;margin-top:8px;padding:14px 16px;background:linear-gradient(100deg,#ff3bd4,#8b5cff 55%,#32dfff);color:#100b25;font:inherit;font-weight:900;font-size:1.02rem;cursor:pointer;box-shadow:0 0 18px #b23cff4d;animation:button-glow 2.4s ease-in-out infinite}
-.submit-btn:disabled{opacity:.65;animation:none;cursor:wait}
-@keyframes button-glow{50%{box-shadow:0 0 25px #ff3bd477,0 0 35px #43e8ff22}}
+.submit-btn:disabled{opacity:.65;animation:none;cursor:wait}.submit-btn:not(:disabled):hover{filter:brightness(1.12);transform:translateY(-2px)}.field label{color:#fff0ff}.field label:before{content:"✦ ";color:#43e8ff}
+@keyframes button-glow{50%{box-shadow:0 0 25px #ff3bd477,0 0 35px #43e8ff22}}@keyframes emojiDance{0%,100%{transform:translateY(0) rotate(-7deg) scale(1)}50%{transform:translateY(-5px) rotate(8deg) scale(1.13)}}@keyframes eyebrowBounce{50%{letter-spacing:.24em;filter:brightness(1.3)}}@keyframes titleShimmer{to{background-position:220% center}}
 .status{margin:14px 0 0;text-align:center;color:#ffd5f5;line-height:1.5}
 .success{display:none;text-align:center;padding:28px 20px;border:1px solid #8dffb077;border-radius:20px;background:linear-gradient(145deg,#10271f,#11182a);box-shadow:0 0 26px #8dffb01b}
 .success .check{font-size:3rem}
@@ -43,14 +43,14 @@ footer{text-align:center;color:#9e98bb;font-size:.82rem;padding:12px 16px 24px}
 <main>
 <section class="neon-banner" aria-label="Haz aquí tu pedido de series o películas">
   <div class="neon-inner">
-    <p class="eyebrow">🎬 Zona de Entretenimiento</p>
-    <h1>✨ Haz aquí tu pedido de series o películas ✨</h1>
-    <p>¡Tú eliges qué sigue! Cuéntanos qué te gustaría ver.</p>
+    <p class="eyebrow"><span>🎬</span> ZONA DE ENTRETENIMIENTO <span>🍿</span></p>
+    <h1><span class="float-emoji">✨</span> Haz aquí tu pedido de series o películas <span class="float-emoji">🎉</span></h1>
+    <p>¡Tú eliges qué sigue! 💖 Cuéntanos qué te gustaría ver. 🌟</p>
   </div>
 </section>
 
 <section class="form-card" id="form-card">
-  <p class="intro">¿Qué película o serie te gustaría que agregáramos al catálogo?</p>
+  <p class="intro"><span class="intro-emoji">🎥</span> ¿Qué película o serie te gustaría que agregáramos al catálogo? <span class="intro-emoji">🍿</span></p>
   <form id="pedido-form">
     <div class="field">
       <label for="titulo">Nombre de la película o serie</label>
@@ -70,7 +70,7 @@ footer{text-align:center;color:#9e98bb;font-size:.82rem;padding:12px 16px 24px}
       <label for="nombre">Tu nombre <span style="font-weight:400;color:#b9b4d1">(opcional)</span></label>
       <input id="nombre" name="nombre" placeholder="¿Cómo te llamas?" maxlength="60" autocomplete="name">
     </div>
-    <button class="submit-btn" id="enviar" type="submit">🚀 CONFIRMA TU PEDIDO</button>
+    <button class="submit-btn" id="enviar" type="submit"><span class="float-emoji">🚀</span> ¡CONFIRMA TU PEDIDO! 🎉</button>
     <p class="status" id="msg" role="status" aria-live="polite"></p>
   </form>
 </section>
@@ -109,7 +109,7 @@ form.addEventListener("submit",function(event){
   })
   .catch(function(){
     msg.textContent="No se pudo enviar en este momento. Revisa tu conexión e inténtalo otra vez.";
-    enviar.disabled=false;enviar.textContent="🚀 CONFIRMA TU PEDIDO";
+    enviar.disabled=false;enviar.textContent="🚀 ¡CONFIRMA TU PEDIDO! 🎉";
   });
 });
 </script>
