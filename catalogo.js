@@ -5,6 +5,8 @@ var BOT="Contenedorpelisseries_bot";
 var TIPO=(document.body.getAttribute("data-tipo")||"").trim().toLowerCase();
 var cont=document.getElementById("catalogo");
 var URL_HOJA="https://docs.google.com/spreadsheets/d/"+SHEET_ID+"/gviz/tq?tqx=out:csv&gid=0";
+function claveColumna(v){return norm(v).replace(/[\\s-]+/g,"_").replace(/[^a-z0-9_]/g,"").replace(/^_+|_+$/g,"")}
+function normalizarEncabezado(v){var k=claveColumna(v);var alias={portada_temporada:"portada_temporada",portada_de_temporada:"portada_temporada",portada_temporadas:"portada_temporada",temporada_portada:"portada_temporada",poster_temporada:"portada_temporada",poster_de_temporada:"portada_temporada",poster_temporada_url:"portada_temporada",url_portada_temporada:"portada_temporada",imagen_temporada:"portada_temporada",imagen_de_temporada:"portada_temporada",imagen_temporadas:"portada_temporada",portada_temp:"portada_temporada",poster_temp:"portada_temporada"};return alias[k]||k}
 var grupos={},nombres=[];
 function el(tag,cls,txt){var e=document.createElement(tag);if(cls)e.className=cls;if(txt!==undefined)e.textContent=txt;return e}
 function botLink(cod){return "https://t.me/"+BOT+"?start="+encodeURIComponent(cod)}
@@ -87,8 +89,8 @@ function mostrarDetalle(n){
 }
 if(!cont)return;
 cont.innerHTML="";cont.appendChild(el("p","vacio","⏳ Cargando catálogo..."));
-fetch(URL_HOJA).then(function(r){return r.text()}).then(function(t){
-  var rows=parseCSV(t),h=rows.shift().map(function(s){return s.trim().toLowerCase()});
+fetch(URL_HOJA+"&_="+Date.now(),{cache:"no-store"}).then(function(r){if(!r.ok)throw new Error("No se pudo leer la hoja");return r.text()}).then(function(t){
+  var rows=parseCSV(t),h=rows.shift().map(normalizarEncabezado);
   rows.map(function(r){var o={};h.forEach(function(k,i){o[k]=(r[i]||"").trim()});return o})
     .filter(function(o){return o.codigo&&o.tipo.toLowerCase()===TIPO})
     .forEach(function(o){var g=o.saga_o_serie||o.titulo;if(!grupos[g]){grupos[g]=[];nombres.push(g)}grupos[g].push(o)});
