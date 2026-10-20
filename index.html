@@ -141,7 +141,35 @@ main{width:min(900px,100%);margin:auto;padding:16px 18px 40px;text-align:center}
 .tv-video-icon:before,.tv-video-icon:after,.popcorn-video-icon:before,.popcorn-video-icon:after{content:none!important;display:none!important}
 @media(hover:none){.choice:hover{transform:none}.choice:active{transform:scale(1.065)}}
 @media(prefers-reduced-motion:reduce){.choice{transition:none}.choice:hover,.choice:active,.choice:focus-visible{transform:none}}
-</style></head>
+</style>
+<style id="zona-cine-acabado-global">
+  body{background-color:#08070d}
+  header .banner{border-color:#ffd58a66;box-shadow:0 14px 38px #0008,0 0 24px #ff477e18;overflow:hidden}
+  header .banner h1{text-shadow:0 0 24px #ff477e55,0 3px 12px #0008}
+  header .banner:after{content:"✦  ━━━━━━━━━  ✦";display:block;margin-top:10px;color:#ffd58a;font-size:.78rem;letter-spacing:.22em;animation:zeHomeSparkle 3s ease-in-out infinite}
+  .greeting{ text-shadow:0 0 18px #ffd16633}
+  .clock-card,.install-banner,.telegram-banner,.watch-note{
+    border-color:#ffffff24;box-shadow:0 12px 30px #0005,0 0 18px #8d5cff12;
+    backdrop-filter:blur(8px)
+  }
+  .telegram-banner{position:relative;isolation:isolate;overflow:hidden}
+  .telegram-banner:after,.install-button:after,.order:after{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:linear-gradient(110deg,transparent 25%,#ffffff2c 48%,transparent 68%);
+    transform:translateX(-130%);animation:zeHomeSweep 7s ease-in-out infinite
+  }
+  .install-button,.order{position:relative;isolation:isolate;overflow:hidden;transition:transform .22s,filter .22s,box-shadow .22s}
+  .install-button:active,.order:active{transform:scale(.985)}
+  main h2{text-shadow:0 0 20px #ff477e2b}
+  .choice{border:1px solid #ffffff20;box-shadow:0 12px 28px #0005,0 0 16px #8d5cff12;background:linear-gradient(155deg,#ffffff0e,#ffffff03)}
+  .choice strong{letter-spacing:.01em}
+  .order{box-shadow:0 10px 28px #0006,0 0 18px #ff477e22}
+  #mensaje-amistoso{box-shadow:0 15px 40px #0008,0 0 20px #ff477e22}
+  @keyframes zeHomeSparkle{50%{opacity:1;filter:brightness(1.4);text-shadow:0 0 16px #ffd58a77}}
+  @keyframes zeHomeSweep{0%,62%{transform:translateX(-130%)}88%,100%{transform:translateX(130%)}}
+  @media(prefers-reduced-motion:reduce){header .banner:after,.telegram-banner:after,.install-button:after,.order:after{animation:none!important}}
+</style>
+</head>
 <body><div id="bienvenida-cine" role="status" aria-label="Bienvenido a mi web de series y películas"><div class="cortina izquierda"></div><div class="cortina derecha"></div><div class="contenido-bienvenida"><p class="titulo-bienvenida">Bienvenido a mi web de series y películas</p><div class="marco-progreso" aria-label="Carga de bienvenida"><div class="barra-progreso"></div></div><span class="porcentaje" id="porcentaje-cine">0%</span><p class="frase-bienvenida">💸 Deja de pagar por plataformas. Aquí puedes obtener el mismo resultado. 🍿✨</p></div></div><header><div class="banner"><h1>🎬 Zona Entretenimiento</h1><div class="by">by Cedillo ©®™</div></div><p class="greeting"><span id="saludoIcono" class="sun">☀️</span> <span id="saludoTexto">¡Buenos días!</span></p><section class="clock-card" aria-live="polite"><div class="clock-thanks"><span class="clock-spark">✨</span> ¡Gracias por visitarme hoy! 💖</div><div class="clock-date">📅 <span id="fechaActual"></span></div><div class="clock-time"><span class="clock-spark">🕒</span> <span id="horaActual"></span></div></section><p class="steps-intro">✨ Para un mejor funcionamiento, realiza estos pasos:</p><a class="telegram-banner" href="https://play.google.com/store/apps/details?id=org.telegram.messenger" target="_blank" rel="noopener noreferrer"><span class="telegram-icon">✈️</span>Tienes que instalar Telegram. ¡Da clic aquí e instálalo!<small>📲 Toca este banner para abrir Google Play y descargar Telegram.</small></a><section class="install-banner" id="install-banner"><div class="install-row"><div class="install-symbol" aria-hidden="true">🎬</div><div class="install-copy"><h2 class="install-title">🎬 Para que siempre tengas a la mano tus series y películas favoritas</h2><p>Coloca esta web en la pantalla de inicio de tu teléfono. Toca el botón de abajo y confirma; no necesitas descargar una aplicación tradicional.</p></div></div><button class="install-button" id="install-button" type="button">📲 INSTALAR MI APP</button><p class="install-note" id="install-note">La instalación te pedirá confirmación en tu dispositivo.</p></section><p class="watch-note">📱✨ ¡Disfruta tus series y películas directamente en tu teléfono! 📺💖 También puedes transmitir el contenido a tu TV inteligente y verlo en pantalla grande. 🍿🎬</p></header>
 <aside id="mensaje-amistoso" role="status" aria-live="polite" aria-atomic="true"><span class="popup-etiqueta">💌 Un mensajito de Zona Entretenimiento</span><p class="popup-texto" id="popup-texto"></p><button id="cerrar-mensaje" type="button" aria-label="Cerrar mensaje">✕</button></aside>
 <main><h2>¿Qué quieres disfrutar hoy?</h2><div class="choices"><a class="choice" href="series.html"><span class="tv-emoji tv-video-icon" aria-hidden="true"><video class="icon-video icon-tv" autoplay muted loop playsinline preload="metadata"><source src="./tv.mp4?v=20261017-1" type="video/mp4"></video></span><strong>Ver series</strong><small>Encuentra tu próxima serie favorita</small></a><a class="choice" href="peliculas.html"><span class="popcorn-emoji popcorn-video-icon" aria-hidden="true"><video class="icon-video icon-popcorn" autoplay muted loop playsinline preload="metadata"><source src="./palomitas.mp4?v=20261017-1" type="video/mp4"></video></span><strong>Ver películas</strong><small>Prepara algo rico y disfruta</small></a></div><a class="order" href="pedido.html">🎬🍿 ¡Realiza tu pedido de serie o película aquí! ✨💖</a></main><footer>Creado por <b>Cedillo ©️</b></footer>
