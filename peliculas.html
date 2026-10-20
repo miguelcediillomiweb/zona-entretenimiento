@@ -200,6 +200,14 @@
     body[data-tipo="pelicula"] .btn.alt{transition:none!important}
   }
 </style>
+<style id="brillo-visible-movil-peliculas">
+body[data-tipo="pelicula"] .banner{box-shadow:0 18px 50px #0008,0 0 30px #e51b3e45,0 0 48px #ffd58a18!important;animation:movieBannerGlow 3s ease-in-out infinite}
+body[data-tipo="pelicula"] .card{border:1px solid #e51b3e35;box-shadow:0 9px 24px #0008,0 0 16px #e51b3e15!important}
+body[data-tipo="pelicula"] .cover{border-color:#ffd58a55!important;box-shadow:0 7px 20px #0009,0 0 14px #e51b3e28!important}
+body[data-tipo="pelicula"] .btn.alt{background:linear-gradient(120deg,#75152a,#32132f 55%,#1c2344)!important;border-color:#ffd58a!important;box-shadow:0 8px 24px #0008,0 0 24px #e51b3e40!important;color:#fff!important}
+@keyframes movieBannerGlow{50%{box-shadow:0 18px 50px #0008,0 0 42px #e51b3e70,0 0 58px #ffd58a2b}}
+@media(prefers-reduced-motion:reduce){body[data-tipo="pelicula"] .banner{animation:none!important}}
+</style>
 </head>
 <body data-tipo="pelicula">
 <main>
