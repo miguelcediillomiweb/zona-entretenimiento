@@ -29,3 +29,54 @@ main{width:min(950px,100%);margin:0 auto;padding:26px 18px 38px;text-align:cente
 .btn.alt{--edge-neon:var(--neon-purple)}
 .vacio{--edge-neon:var(--neon-green)}
 @media(prefers-reduced-motion:reduce){.banner:after,.card:after,.btn:after,.vacio:after{animation:none}}
+
+
+/* ===== ACABADO CINEMATOGRÁFICO GLOBAL · ZONA ENTRETENIMIENTO ===== */
+:root{--ze-gold:#ffd58a;--ze-rose:#ff477e;--ze-violet:#8d5cff;--ze-glass:rgba(255,255,255,.055)}
+body[data-tipo="serie"]{
+  overflow-x:hidden;
+  background:
+    radial-gradient(ellipse at 50% -8%,rgba(141,92,255,.2),transparent 45%),
+    radial-gradient(ellipse at 5% 48%,rgba(255,71,126,.09),transparent 34%),
+    linear-gradient(180deg,#100a1b 0%,#090916 58%,#05050a 100%);
+}
+body[data-tipo="serie"] main{width:min(1120px,100%);padding:clamp(20px,4vw,42px) clamp(14px,3vw,28px) 44px}
+body[data-tipo="serie"] .banner{
+  position:relative;isolation:isolate;overflow:hidden;max-width:850px;
+  padding:clamp(24px,5vw,40px) 18px;border:1px solid rgba(255,213,138,.45);
+  border-radius:26px;background:linear-gradient(112deg,rgba(35,13,52,.96),rgba(63,22,74,.9) 48%,rgba(15,23,48,.96));
+  box-shadow:0 18px 50px #0008,0 0 26px #8d5cff22,inset 0 1px #ffffff12;
+}
+body[data-tipo="serie"] .banner h1{font-size:clamp(2rem,7vw,3.25rem);line-height:1.12;letter-spacing:-.04em;text-shadow:0 0 25px #8d5cff55}
+body[data-tipo="serie"] .banner:before{
+  content:"";position:absolute;z-index:-1;top:-25%;bottom:-25%;left:-45%;width:28%;
+  background:linear-gradient(90deg,transparent,#ffffff24,transparent);transform:skewX(-18deg);
+  animation:zeSweep 7s ease-in-out infinite;pointer-events:none
+}
+body[data-tipo="serie"] .banner:after{color:var(--ze-gold);text-shadow:0 0 16px #ffd58a66}
+body[data-tipo="serie"] .sub{margin:26px 0 12px;font-size:clamp(1.05rem,3.5vw,1.3rem);letter-spacing:.03em;text-shadow:0 0 16px #ffd16620}
+body[data-tipo="serie"] .grid{grid-template-columns:repeat(auto-fill,minmax(clamp(125px,28vw,174px),1fr));gap:clamp(13px,2.4vw,22px);margin:12px 0 24px}
+body[data-tipo="serie"] .card{
+  position:relative;overflow:hidden;border-radius:16px;padding:0 0 10px;
+  background:linear-gradient(180deg,#ffffff0d,#ffffff03);box-shadow:0 9px 24px #0006;
+  transition:transform .28s cubic-bezier(.2,.8,.2,1),box-shadow .28s,background .28s;
+  animation:zeCardIn .5s both;animation-delay:calc(var(--ze-index,0)*30ms)
+}
+body[data-tipo="serie"] .card:nth-child(8n+1){--ze-index:0}body[data-tipo="serie"] .card:nth-child(8n+2){--ze-index:1}
+body[data-tipo="serie"] .card:nth-child(8n+3){--ze-index:2}body[data-tipo="serie"] .card:nth-child(8n+4){--ze-index:3}
+body[data-tipo="serie"] .card:nth-child(8n+5){--ze-index:4}body[data-tipo="serie"] .card:nth-child(8n+6){--ze-index:5}
+body[data-tipo="serie"] .card:nth-child(8n+7){--ze-index:6}body[data-tipo="serie"] .card:nth-child(8n){--ze-index:7}
+body[data-tipo="serie"] .cover{border:1px solid #ffffff20;box-shadow:0 7px 20px #0008;transition:transform .45s,border-color .3s,box-shadow .3s}
+body[data-tipo="serie"] .cover img{transition:transform .55s,filter .35s}
+body[data-tipo="serie"] .card .nombre{padding:0 7px;margin-top:10px;font-weight:650;color:#fff5ff;text-wrap:balance}
+body[data-tipo="serie"] .card:focus-visible{outline:3px solid var(--ze-gold);outline-offset:4px}
+body[data-tipo="serie"] .btn.alt{margin-top:26px;padding:14px 22px;border:1px solid #ffd58a55;border-radius:999px;background:linear-gradient(120deg,#211632,#17172d);box-shadow:0 8px 24px #0005;transition:transform .2s,box-shadow .2s,border-color .2s}
+body[data-tipo="serie"] .btn.alt:hover{transform:translateY(-2px);border-color:#ffd58acb;box-shadow:0 10px 28px #8d5cff2c}
+@media(hover:hover) and (pointer:fine){
+ body[data-tipo="serie"] .card:hover{transform:translateY(-6px);background:linear-gradient(180deg,#8d5cff18,#ffffff04);box-shadow:0 16px 32px #0009,0 0 18px #8d5cff22}
+ body[data-tipo="serie"] .card:hover .cover{transform:scale(1.018);border-color:#ffd58a66;box-shadow:0 12px 26px #0009,0 0 16px #8d5cff22}
+ body[data-tipo="serie"] .card:hover .cover img{transform:scale(1.055);filter:saturate(1.08)}
+}
+@keyframes zeSweep{0%,60%{left:-45%;opacity:0}70%{opacity:1}90%,100%{left:125%;opacity:0}}
+@keyframes zeCardIn{from{opacity:0;translate:0 10px}to{opacity:1;translate:0 0}}
+@media(prefers-reduced-motion:reduce){body[data-tipo="serie"] .banner:before,body[data-tipo="serie"] .banner:after,body[data-tipo="serie"] .card{animation:none!important}body[data-tipo="serie"] .card,body[data-tipo="serie"] .cover,body[data-tipo="serie"] .cover img,body[data-tipo="serie"] .btn.alt{transition:none!important}}
