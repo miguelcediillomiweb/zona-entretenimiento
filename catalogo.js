@@ -59,11 +59,29 @@ function mostrarDetalle(n){
     var a=el("a","btn item","▶ "+o.titulo);a.href=botLink(o.codigo);a.target="_blank";a.rel="noopener";
     cont.appendChild(a)})}
 
-fetch(URL_HOJA).then(function(r){return r.text()}).then(function(t){
-  var rows=parseCSV(t),h=rows.shift().map(function(s){return s.trim().toLowerCase()});
-  rows.map(function(r){var o={};h.forEach(function(k,i){o[k]=(r[i]||"").trim()});return o})
-    .filter(function(o){return o.codigo&&o.tipo.toLowerCase()===TIPO})
-    .forEach(function(o){var g=o.saga_o_serie||o.titulo;if(!grupos[g]){grupos[g]=[];nombres.push(g)}grupos[g].push(o)});
+function normalizar(v){return String(v||"").normalize("NFD").replace(/[\\u0300-\\u036f]/g,"").trim().toLowerCase()}
+function esTipoCorrecto(valor){
+  var v=normalizar(valor);
+  if(TIPO==="pelicula") return v==="pelicula"||v==="peliculas"||v==="movie"||v==="movies";
+  if(TIPO==="serie") return v==="serie"||v==="series"||v==="tv";
+  return v===normalizar(TIPO);
+}
+fetch(URL_HOJA+"&cachebust="+Date.now(),{cache:"no-store"})
+.then(function(r){if(!r.ok)throw new Error("HTTP "+r.status);return r.text()})
+.then(function(t){
+  if(!t||!t.trim())throw new Error("La hoja llegó vacía");
+  var rows=parseCSV(t),h=rows.shift().map(function(s){return normalizar(s.replace(/^\\uFEFF/,""))});
+  rows.map(function(r){
+    var o={};h.forEach(function(k,i){o[k]=String(r[i]||"").trim()});return o
+  })
+  .filter(function(o){return o.codigo&&esTipoCorrecto(o.tipo)&&(o.titulo||o.saga_o_serie)})
+  .forEach(function(o){var g=o.saga_o_serie||o.titulo;if(!grupos[g]){grupos[g]=[];nombres.push(g)}grupos[g].push(o)});
   nombres.sort(function(a,b){return a.localeCompare(b,"es",{sensitivity:"base",numeric:true})});
   mostrarLista();
-}).catch(function(){cont.innerHTML="";cont.appendChild(el("p","vacio","No se pudo cargar el catálogo. Intenta más tarde."))});
+})
+.catch(function(err){
+  console.error("No se pudo cargar el catálogo desde Google Sheets:",err);
+  cont.innerHTML="";
+  cont.appendChild(el("p","vacio","No pudimos conectar con el catálogo ahora mismo. Revisa tu conexión e inténtalo de nuevo en unos segundos."));
+  var retry=el("button","btn alt","🔄 Volver a intentar");retry.onclick=function(){location.reload()};cont.appendChild(retry);
+});
