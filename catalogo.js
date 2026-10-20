@@ -59,7 +59,7 @@ function mostrarDetalle(n){
     var a=el("a","btn item","▶ "+o.titulo);a.href=botLink(o.codigo);a.target="_blank";a.rel="noopener";
     cont.appendChild(a)})}
 
-function normalizar(v){return String(v||"").normalize("NFD").replace(/[\\u0300-\\u036f]/g,"").trim().toLowerCase()}
+function normalizar(v){return String(v||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").trim().toLowerCase()}
 function esTipoCorrecto(valor){
   var v=normalizar(valor);
   if(TIPO==="pelicula") return v==="pelicula"||v==="peliculas"||v==="movie"||v==="movies";
@@ -70,7 +70,7 @@ fetch(URL_HOJA+"&cachebust="+Date.now(),{cache:"no-store"})
 .then(function(r){if(!r.ok)throw new Error("HTTP "+r.status);return r.text()})
 .then(function(t){
   if(!t||!t.trim())throw new Error("La hoja llegó vacía");
-  var rows=parseCSV(t),h=rows.shift().map(function(s){return normalizar(s.replace(/^\\uFEFF/,""))});
+  var rows=parseCSV(t),h=rows.shift().map(function(s){return normalizar(s.replace(/^\uFEFF/,""))});
   rows.map(function(r){
     var o={};h.forEach(function(k,i){o[k]=String(r[i]||"").trim()});return o
   })
