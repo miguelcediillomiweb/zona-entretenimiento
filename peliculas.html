@@ -7,6 +7,199 @@
 <title>🎞️ Películas | Zona Entretenimiento</title>
 <link rel="stylesheet" href="style.css?v=20261017-3">
 <link rel="stylesheet" href="catalogo.css?v=20261017-5">
+
+<style id="estilo-cinematografico-peliculas">
+  :root{
+    --movie-red:#e51b3e;
+    --movie-gold:#ffd58a;
+    --movie-violet:#8d5cff;
+    --movie-ink:#08070d;
+  }
+  html{background:var(--movie-ink);scroll-behavior:smooth}
+  body[data-tipo="pelicula"]{
+    position:relative;
+    isolation:isolate;
+    overflow-x:hidden;
+    background:
+      radial-gradient(ellipse at 50% -10%,rgba(229,27,62,.22),transparent 48%),
+      radial-gradient(ellipse at 8% 40%,rgba(141,92,255,.10),transparent 35%),
+      radial-gradient(ellipse at 92% 72%,rgba(255,213,138,.07),transparent 32%),
+      linear-gradient(180deg,#10080f 0%,#090810 48%,#05050a 100%);
+  }
+  body[data-tipo="pelicula"]::before{
+    content:"";
+    position:fixed;
+    z-index:-1;
+    inset:0;
+    pointer-events:none;
+    opacity:.28;
+    background:repeating-linear-gradient(0deg,transparent 0 3px,rgba(255,255,255,.018) 4px,transparent 5px 8px);
+  }
+  body[data-tipo="pelicula"] main{
+    position:relative;
+    width:min(1120px,100%);
+    padding:clamp(20px,4vw,42px) clamp(14px,3vw,28px) 44px;
+  }
+  body[data-tipo="pelicula"] .banner{
+    max-width:850px;
+    margin-bottom:26px;
+    padding:clamp(24px,5vw,42px) 18px;
+    overflow:hidden;
+    border:1px solid rgba(255,213,138,.52);
+    border-radius:26px;
+    background:
+      linear-gradient(110deg,rgba(35,7,17,.96),rgba(91,12,32,.88) 48%,rgba(21,13,38,.96)),
+      #160912;
+    box-shadow:0 18px 50px rgba(0,0,0,.48),0 0 28px rgba(229,27,62,.12),inset 0 1px rgba(255,255,255,.08);
+  }
+  body[data-tipo="pelicula"] .banner::before{
+    content:"";
+    position:absolute;
+    inset:-30% auto -30% -45%;
+    width:30%;
+    pointer-events:none;
+    transform:skewX(-18deg);
+    background:linear-gradient(90deg,transparent,rgba(255,228,183,.17),transparent);
+    animation:movieLightSweep 7s ease-in-out infinite;
+  }
+  body[data-tipo="pelicula"] .banner::after{
+    content:"✦  ━━━━━━━━━  ✦";
+    display:block;
+    margin-top:15px;
+    color:var(--movie-gold);
+    font-size:.8rem;
+    letter-spacing:.24em;
+    text-shadow:0 0 14px rgba(255,213,138,.32);
+    animation:movieGlimmer 3.5s ease-in-out infinite;
+  }
+  body[data-tipo="pelicula"] h1{
+    position:relative;
+    font-size:clamp(2rem,7vw,3.35rem);
+    line-height:1.12;
+    letter-spacing:-.045em;
+    color:#fff8f1;
+    text-shadow:0 3px 0 #420714,0 0 26px rgba(229,27,62,.32);
+  }
+  body[data-tipo="pelicula"] #catalogo{
+    min-height:180px;
+    animation:movieFadeUp .65s ease both;
+  }
+  body[data-tipo="pelicula"] .sub{
+    margin:26px 0 12px;
+    color:var(--movie-gold);
+    font-size:clamp(1.05rem,3.4vw,1.3rem);
+    letter-spacing:.035em;
+    text-shadow:0 0 18px rgba(255,213,138,.15);
+  }
+  body[data-tipo="pelicula"] .grid{
+    grid-template-columns:repeat(auto-fill,minmax(clamp(125px,28vw,174px),1fr));
+    gap:clamp(13px,2.4vw,22px);
+    margin:12px 0 24px;
+  }
+  body[data-tipo="pelicula"] .card{
+    position:relative;
+    border-radius:16px;
+    padding:0 0 10px;
+    overflow:hidden;
+    background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.018));
+    box-shadow:0 9px 24px rgba(0,0,0,.27);
+    transition:transform .28s cubic-bezier(.2,.8,.2,1),background .28s,box-shadow .28s;
+    animation:movieFadeUp .55s both;
+    animation-delay:calc((var(--movie-index,0))*35ms);
+  }
+  body[data-tipo="pelicula"] .card:nth-child(12n+1){--movie-index:0}
+  body[data-tipo="pelicula"] .card:nth-child(12n+2){--movie-index:1}
+  body[data-tipo="pelicula"] .card:nth-child(12n+3){--movie-index:2}
+  body[data-tipo="pelicula"] .card:nth-child(12n+4){--movie-index:3}
+  body[data-tipo="pelicula"] .card:nth-child(12n+5){--movie-index:4}
+  body[data-tipo="pelicula"] .card:nth-child(12n+6){--movie-index:5}
+  body[data-tipo="pelicula"] .card:nth-child(12n+7){--movie-index:6}
+  body[data-tipo="pelicula"] .card:nth-child(12n+8){--movie-index:7}
+  body[data-tipo="pelicula"] .card:nth-child(12n+9){--movie-index:8}
+  body[data-tipo="pelicula"] .card:nth-child(12n+10){--movie-index:9}
+  body[data-tipo="pelicula"] .card:nth-child(12n+11){--movie-index:10}
+  body[data-tipo="pelicula"] .card:nth-child(12n){--movie-index:11}
+  body[data-tipo="pelicula"] .cover{
+    aspect-ratio:2/3;
+    border-radius:13px;
+    border:1px solid rgba(255,255,255,.12);
+    box-shadow:0 6px 18px rgba(0,0,0,.42);
+    background:linear-gradient(145deg,#36101e,#171326 72%,#6b2035);
+    transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .35s,border-color .35s;
+  }
+  body[data-tipo="pelicula"] .cover img{
+    transition:transform .55s cubic-bezier(.2,.8,.2,1),filter .35s;
+    will-change:transform;
+  }
+  body[data-tipo="pelicula"] .card .nombre{
+    padding:0 7px;
+    margin-top:10px;
+    color:#fff5ee;
+    font-size:.91rem;
+    font-weight:650;
+    line-height:1.35;
+    text-wrap:balance;
+  }
+  body[data-tipo="pelicula"] .card:focus-visible{
+    outline:3px solid var(--movie-gold);
+    outline-offset:4px;
+  }
+  body[data-tipo="pelicula"] .vacio{
+    border:1px solid rgba(255,213,138,.28);
+    background:linear-gradient(135deg,rgba(74,18,36,.65),rgba(20,18,36,.92));
+    box-shadow:0 10px 28px rgba(0,0,0,.25);
+  }
+  body[data-tipo="pelicula"] .btn.alt{
+    margin-top:26px;
+    padding:14px 22px;
+    border:1px solid rgba(255,213,138,.38);
+    border-radius:999px;
+    background:linear-gradient(120deg,#391020,#20182f);
+    box-shadow:0 8px 24px rgba(0,0,0,.28);
+    transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease;
+  }
+  body[data-tipo="pelicula"] .btn.alt:hover{
+    transform:translateY(-2px);
+    border-color:rgba(255,213,138,.8);
+    box-shadow:0 10px 28px rgba(229,27,62,.18);
+  }
+  body[data-tipo="pelicula"] footer{
+    border-top-color:rgba(255,213,138,.16);
+    background:rgba(5,5,10,.38);
+  }
+  body[data-tipo="pelicula"] footer b{color:var(--movie-gold)}
+  @media(hover:hover) and (pointer:fine){
+    body[data-tipo="pelicula"] .card:hover{
+      transform:translateY(-6px);
+      background:linear-gradient(180deg,rgba(229,27,62,.10),rgba(255,255,255,.025));
+      box-shadow:0 15px 30px rgba(0,0,0,.4),0 0 20px rgba(229,27,62,.12);
+    }
+    body[data-tipo="pelicula"] .card:hover .cover{
+      transform:scale(1.018);
+      border-color:rgba(255,213,138,.46);
+      box-shadow:0 12px 26px rgba(0,0,0,.45),0 0 17px rgba(229,27,62,.16);
+    }
+    body[data-tipo="pelicula"] .card:hover .cover img{transform:scale(1.055);filter:saturate(1.08)}
+  }
+  @keyframes movieLightSweep{
+    0%,60%{left:-45%;opacity:0}
+    70%{opacity:1}
+    90%,100%{left:125%;opacity:0}
+  }
+  @keyframes movieGlimmer{0%,100%{opacity:.68}50%{opacity:1;text-shadow:0 0 18px rgba(255,213,138,.55)}}
+  @keyframes movieFadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+  @media(prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    body[data-tipo="pelicula"] .banner::before,
+    body[data-tipo="pelicula"] .banner::after,
+    body[data-tipo="pelicula"] #catalogo,
+    body[data-tipo="pelicula"] .card{animation:none!important}
+    body[data-tipo="pelicula"] .card,
+    body[data-tipo="pelicula"] .cover,
+    body[data-tipo="pelicula"] .cover img,
+    body[data-tipo="pelicula"] .btn.alt{transition:none!important}
+  }
+</style>
 </head>
 <body data-tipo="pelicula">
 <main>
