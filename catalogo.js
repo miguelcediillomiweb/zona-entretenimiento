@@ -59,7 +59,7 @@ function mostrarDetalle(n){
     var a=el("a","btn item","▶ "+o.titulo);a.href=botLink(o.codigo);a.target="_blank";a.rel="noopener";
     cont.appendChild(a)})}
 
-function normalizar(v){return String(v||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").trim().toLowerCase()}
+function normalizar(v){return String(v||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").trim().toLowerCase()}\nfunction claveColumna(v){return normalizar(v).replace(/[^a-z0-9]+/g,"_").replace(/^_+|_+$/g,"")}\nfunction aliasColumna(k){var a={"codigo_del_bot":"codigo","codigo_bot":"codigo","codigo_telegram":"codigo","nombre_del_titulo":"titulo","nombre_titulo":"titulo","pelicula_serie":"tipo","tipo_de_contenido":"tipo","saga_serie":"saga_o_serie","nombre_de_saga_o_serie":"saga_o_serie","poster":"portada","poster_temporada":"portada_temporada","temporada_numero":"temporada","numero_de_temporada":"temporada","episodio_numero":"episodio","numero_de_episodio":"episodio"};return a[k]||k}
 function esTipoCorrecto(valor){
   var v=normalizar(valor);
   if(TIPO==="pelicula") return v==="pelicula"||v==="peliculas"||v==="movie"||v==="movies";
@@ -70,12 +70,12 @@ fetch(URL_HOJA+"&cachebust="+Date.now(),{cache:"no-store"})
 .then(function(r){if(!r.ok)throw new Error("HTTP "+r.status);return r.text()})
 .then(function(t){
   if(!t||!t.trim())throw new Error("La hoja llegó vacía");
-  var rows=parseCSV(t),h=rows.shift().map(function(s){return normalizar(s.replace(/^\uFEFF/,""))});
+  var rows=parseCSV(t),h=rows.shift().map(function(s){return aliasColumna(claveColumna(s.replace(/^\uFEFF/,"")))});
   rows.map(function(r){
     var o={};h.forEach(function(k,i){o[k]=String(r[i]||"").trim()});return o
   })
-  .filter(function(o){return o.codigo&&esTipoCorrecto(o.tipo)&&(o.titulo||o.saga_o_serie)})
-  .forEach(function(o){var g=o.saga_o_serie||o.titulo;if(!grupos[g]){grupos[g]=[];nombres.push(g)}grupos[g].push(o)});
+  .filter(function(o){return o.codigo&&esTipoCorrecto(o.tipo)&&(o.titulo||o.saga_o_serie||o.nombre)})
+  .forEach(function(o){var g=o.saga_o_serie||o.titulo||o.nombre;if(!grupos[g]){grupos[g]=[];nombres.push(g)}grupos[g].push(o)});
   nombres.sort(function(a,b){return a.localeCompare(b,"es",{sensitivity:"base",numeric:true})});
   mostrarLista();
 })
