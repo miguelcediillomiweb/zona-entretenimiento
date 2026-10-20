@@ -1,6 +1,6 @@
 /* OneSignal (notificaciones): debe ir al inicio del archivo */
 try{importScripts('https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.sw.js');}catch(e){}
-const CACHE_NAME='zona-entretenimiento-v9';
+const CACHE_NAME='zona-entretenimiento-v10';
 const SHELL=['./','./index.html','./series.html','./peliculas.html','./pedido.html','./style.css','./catalogo.css','./catalogo.js','./manifest.json','./icon.svg'];
 self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE_NAME).then(cache=>cache.addAll(SHELL.map(url=>new Request(url,{cache:'reload'}))).catch(()=>{})).then(()=>self.skipWaiting()));});
 self.addEventListener('activate',event=>{event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key.startsWith('zona-entretenimiento-')&&key!==CACHE_NAME).map(key=>caches.delete(key)))).then(()=>self.clients.claim()));});
