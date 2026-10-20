@@ -187,6 +187,83 @@ header .banner:after{content:"";position:absolute;inset:-30% auto -30% -60%;widt
 @keyframes botonFlota{50%{transform:translateY(-2px)}}
 @media(prefers-reduced-motion:reduce){header .banner,header .banner:after,.clock-card,.choices .choice,.order{animation:none!important}}
 </style>
+
+<style id="zona-netflix-visual-v1">
+/* Rediseño visual de la portada: cine, contraste y tarjetas profundas */
+:root{--ze-red:#e50914;--ze-red-bright:#ff2734;--ze-ink:#080808;--ze-surface:#171717}
+html{background:#080808}
+body{background:radial-gradient(ellipse at 50% 0%,#3b1017 0%,#17090d 28%,#080808 70%)!important;color:#fff;overflow-x:hidden}
+header{position:relative;padding:20px 14px 24px;background:linear-gradient(180deg,rgba(0,0,0,.25),transparent 92%)}
+header .banner{max-width:1000px!important;min-height:130px;display:flex;flex-direction:column;justify-content:center;border:1px solid #ff35444f!important;border-radius:18px!important;padding:25px 15px!important;background:linear-gradient(115deg,#090909 0%,#2a090d 48%,#120d15 100%)!important;box-shadow:0 16px 36px #000b,0 0 28px #e509142b,inset 0 1px #ffffff16!important;animation:zeHeroPulse 4s ease-in-out infinite}
+header .banner h1{font-size:clamp(2rem,8vw,4rem)!important;letter-spacing:-.055em!important;line-height:1.05;text-shadow:0 3px 0 #65070b,0 0 28px #e5091455!important}
+header .banner .by{margin-top:10px;color:#f2c7c9;letter-spacing:.22em;font-size:.78rem}
+header .banner:after{content:"ORIGINAL · SERIES · PELÍCULAS";display:block;margin:13px auto 0;padding:6px 12px;width:max-content;max-width:100%;border-left:3px solid var(--ze-red);background:#e509141a;color:#fff;font-size:.68rem;letter-spacing:.19em;font-weight:900;animation:zeTagGlow 2.8s ease-in-out infinite}
+.greeting{margin:22px 0 12px!important;font-size:clamp(1.6rem,5vw,2.4rem)!important;font-weight:950!important}
+.clock-card{border:1px solid #ffffff1b!important;border-top:2px solid var(--ze-red)!important;border-radius:16px!important;background:linear-gradient(135deg,#191919f5,#101010f5)!important;box-shadow:0 12px 30px #0009,0 0 22px #e5091417!important;backdrop-filter:blur(10px)}
+.clock-time{text-shadow:0 0 18px #e5091470!important}
+.telegram-banner{border:1px solid #ffffff22!important;border-radius:13px!important;box-shadow:0 8px 25px #0008!important}
+.install-banner{border:1px solid #ffffff20!important;border-left:4px solid var(--ze-red)!important;border-radius:14px!important;background:linear-gradient(120deg,#1a1a1a,#111)!important;box-shadow:0 12px 28px #0008!important}
+.install-symbol{background:linear-gradient(145deg,#e50914,#740811)!important;box-shadow:0 5px 18px #e509144f!important}
+.install-button{background:linear-gradient(110deg,#f6121d,#b00610)!important;color:#fff!important;box-shadow:0 6px 0 #6f070d,0 12px 22px #0008!important}
+.watch-note{border:1px solid #e5091455!important;border-radius:13px!important;background:linear-gradient(110deg,#1c1011,#151515)!important;box-shadow:0 0 22px #e5091417!important}
+main{width:min(1120px,100%)!important;padding:25px 16px 48px!important}
+main h2{margin:0 auto 22px!important;text-align:left;font-size:clamp(1.55rem,5vw,2.35rem)!important;font-weight:950;letter-spacing:-.035em;text-shadow:none!important}
+main h2:before{content:"ELIGE TU PRÓXIMA AVENTURA";display:block;margin-bottom:8px;color:#ff4651;font-size:.68rem;letter-spacing:.2em;font-weight:950}
+.choices{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:clamp(12px,2.8vw,24px)!important}
+.choices .choice{min-height:250px;display:flex!important;flex-direction:column;align-items:center;justify-content:center;padding:22px 12px 24px!important;overflow:hidden;border:1px solid #ffffff20!important;border-radius:13px!important;background:linear-gradient(155deg,#242424 0%,#151515 58%,#0b0b0b 100%)!important;box-shadow:0 5px 0 #050505,0 13px 0 #0007,0 22px 34px #000b,inset 0 1px #ffffff14!important;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease!important;animation:zeCardBreath 4s ease-in-out infinite}
+.choices .choice:nth-child(2){animation-delay:1.4s}
+.choices .choice:before{z-index:0!important;inset:0!important;opacity:1!important;background:linear-gradient(180deg,#e5091420,transparent 55%)!important}
+.choices .choice:after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;border-radius:inherit;background:linear-gradient(112deg,transparent 20%,#ffffff10 43%,transparent 59%);background-size:230% 100%;background-position:140% 0;animation:zeCardSweep 5s ease-in-out infinite}
+.choices .choice:nth-child(2):after{animation-delay:1.2s}
+.choices .choice strong{position:relative;z-index:2;margin-top:6px;font-size:clamp(1.15rem,4vw,1.6rem)!important;font-weight:950;letter-spacing:-.02em}
+.choices .choice small{position:relative;z-index:2;color:#d1d1d1!important;font-size:.86rem;line-height:1.4}
+.choices .choice .tv-video-icon,.choices .choice .popcorn-video-icon{position:relative;z-index:2;width:clamp(92px,22vw,140px)!important;height:clamp(88px,21vw,132px)!important;margin-bottom:9px!important;filter:drop-shadow(0 9px 15px #000c)!important}
+.choices .choice .icon-video{animation:zeEmojiBounce 1.8s ease-in-out infinite;transform-origin:50% 80%}
+.choices .choice:nth-child(2) .icon-video{animation-delay:.35s}
+.choices .choice .tv-video-icon:before,.choices .choice .popcorn-video-icon:before{content:"✨";display:block!important;position:absolute;z-index:5;right:0;top:5px;font-size:1.25rem;animation:zeSparkle 1.35s ease-in-out infinite}
+.choices .choice .tv-video-icon:after{content:"📺";display:block;position:absolute;left:-8px;bottom:0;font-size:1.45rem;filter:drop-shadow(0 0 8px #36d9ff);animation:zeEmojiWiggle 1.1s ease-in-out infinite}
+.choices .choice .popcorn-video-icon:after{content:"🍿";display:block;position:absolute;right:-6px;bottom:0;font-size:1.45rem;filter:drop-shadow(0 0 8px #ffd166);animation:zeEmojiWiggle 1s ease-in-out infinite reverse}
+.choices .choice:active{transform:translateY(7px) scale(.975)!important;border-color:#ff4651!important;box-shadow:0 1px 0 #050505,0 4px 12px #000b,0 0 28px #e5091470!important;filter:brightness(1.16)}
+.choices .choice:focus-visible{outline:3px solid #fff;outline-offset:4px}
+.order{display:block!important;width:100%;max-width:690px;margin:28px auto 0!important;padding:18px 20px!important;border:1px solid #ff727a!important;border-radius:12px!important;background:linear-gradient(110deg,#ed101b,#a00610 60%,#6f0710)!important;color:#fff!important;font-size:clamp(1rem,3.5vw,1.22rem);box-shadow:0 5px 0 #60060b,0 13px 25px #0009,0 0 25px #e5091435!important;animation:zeOrderPulse 2.6s ease-in-out infinite!important}
+.order:active{transform:translateY(4px) scale(.985)!important;box-shadow:0 1px 0 #60060b,0 5px 12px #0009!important}
+footer{border-top:1px solid #ffffff15!important;background:#070707;color:#a7a7a7!important}
+footer b{color:#f4c6c8!important}
+.sun,.clock-spark,.telegram-icon,.install-symbol,.clock-thanks,.steps-intro,.watch-note{display:inline-block}
+.sun{animation:zeEmojiWiggle 2s ease-in-out infinite}
+.clock-spark{animation:zeSparkle 1.3s ease-in-out infinite}
+.telegram-icon{animation:zeFly 1.8s ease-in-out infinite}
+.install-symbol{animation:zeEmojiBounce 1.6s ease-in-out infinite}
+.steps-intro{animation:zeTextGlow 2.6s ease-in-out infinite}
+#mensaje-amistoso{border:1px solid #ff465177!important;border-left:4px solid #e50914!important;background:linear-gradient(135deg,#1b1b1b,#2b1012)!important}
+@keyframes zeHeroPulse{0%,100%{box-shadow:0 16px 36px #000b,0 0 22px #e5091422,inset 0 1px #ffffff16}50%{box-shadow:0 16px 36px #000b,0 0 38px #e5091455,inset 0 1px #ffffff20}}
+@keyframes zeTagGlow{0%,100%{text-shadow:0 0 0 transparent;filter:brightness(1)}50%{text-shadow:0 0 12px #ff4651;filter:brightness(1.35)}}
+@keyframes zeCardBreath{0%,100%{box-shadow:0 5px 0 #050505,0 13px 0 #0007,0 22px 34px #000b,inset 0 1px #ffffff14}50%{box-shadow:0 5px 0 #050505,0 13px 0 #0007,0 22px 34px #000b,0 0 23px #e509142a,inset 0 1px #ffffff14}}
+@keyframes zeCardSweep{0%,60%{background-position:140% 0}83%,100%{background-position:-140% 0}}
+@keyframes zeEmojiBounce{0%,100%{transform:translateY(0) rotate(-2deg) scale(1)}50%{transform:translateY(-7px) rotate(2deg) scale(1.035)}}
+@keyframes zeEmojiWiggle{0%,100%{transform:rotate(-7deg) translateY(0)}50%{transform:rotate(8deg) translateY(-5px)}}
+@keyframes zeSparkle{0%,100%{opacity:.5;transform:scale(.72) rotate(-12deg)}50%{opacity:1;transform:scale(1.25) rotate(15deg)}}
+@keyframes zeFly{0%,100%{transform:translate(0,0) rotate(-8deg)}50%{transform:translate(4px,-5px) rotate(8deg)}}
+@keyframes zeTextGlow{50%{filter:brightness(1.35);text-shadow:0 0 16px #e5091466}}
+@keyframes zeOrderPulse{0%,100%{box-shadow:0 5px 0 #60060b,0 13px 25px #0009,0 0 16px #e5091422}50%{box-shadow:0 5px 0 #60060b,0 13px 25px #0009,0 0 32px #e5091466}}
+@media(max-width:520px){
+ header{padding:14px 10px 20px}
+ header .banner{min-height:115px;padding:21px 10px!important;border-radius:13px!important}
+ header .banner:after{font-size:.58rem;letter-spacing:.12em}
+ .clock-card,.telegram-banner,.install-banner,.watch-note{width:calc(100% - 4px)!important}
+ .install-row{align-items:flex-start}
+ main{padding:22px 12px 36px!important}
+ .choices{gap:11px!important}
+ .choices .choice{min-height:218px;padding:18px 8px 20px!important;border-radius:11px!important}
+ .choices .choice small{font-size:.78rem}
+ .choices .choice .tv-video-icon,.choices .choice .popcorn-video-icon{width:84px!important;height:86px!important}
+ .order{line-height:1.45}
+}
+@media(prefers-reduced-motion:reduce){
+ header .banner,.header .banner:after,.choices .choice,.choices .choice:after,.choices .choice .icon-video,.choices .choice .tv-video-icon:before,.choices .choice .tv-video-icon:after,.choices .choice .popcorn-video-icon:before,.choices .choice .popcorn-video-icon:after,.sun,.clock-spark,.telegram-icon,.install-symbol,.steps-intro,.order{animation:none!important;transition:none!important}
+}
+</style>
+
 </head>
 <body><div id="bienvenida-cine" role="status" aria-label="Bienvenido a mi web de series y películas"><div class="cortina izquierda"></div><div class="cortina derecha"></div><div class="contenido-bienvenida"><p class="titulo-bienvenida">Bienvenido a mi web de series y películas</p><div class="marco-progreso" aria-label="Carga de bienvenida"><div class="barra-progreso"></div></div><span class="porcentaje" id="porcentaje-cine">0%</span><p class="frase-bienvenida">💸 Deja de pagar por plataformas. Aquí puedes obtener el mismo resultado. 🍿✨</p></div></div><header><div class="banner"><h1>🎬 Zona Entretenimiento</h1><div class="by">by Cedillo ©®™</div></div><p class="greeting"><span id="saludoIcono" class="sun">☀️</span> <span id="saludoTexto">¡Buenos días!</span></p><section class="clock-card" aria-live="polite"><div class="clock-thanks"><span class="clock-spark">✨</span> ¡Gracias por visitarme hoy! 💖</div><div class="clock-date">📅 <span id="fechaActual"></span></div><div class="clock-time"><span class="clock-spark">🕒</span> <span id="horaActual"></span></div></section><p class="steps-intro">✨ Para un mejor funcionamiento, realiza estos pasos:</p><a class="telegram-banner" href="https://play.google.com/store/apps/details?id=org.telegram.messenger" target="_blank" rel="noopener noreferrer"><span class="telegram-icon">✈️</span>Tienes que instalar Telegram. ¡Da clic aquí e instálalo!<small>📲 Toca este banner para abrir Google Play y descargar Telegram.</small></a><section class="install-banner" id="install-banner"><div class="install-row"><div class="install-symbol" aria-hidden="true">🎬</div><div class="install-copy"><h2 class="install-title">🎬 Para que siempre tengas a la mano tus series y películas favoritas</h2><p>Coloca esta web en la pantalla de inicio de tu teléfono. Toca el botón de abajo y confirma; no necesitas descargar una aplicación tradicional.</p></div></div><button class="install-button" id="install-button" type="button">📲 INSTALAR MI APP</button><p class="install-note" id="install-note">La instalación te pedirá confirmación en tu dispositivo.</p></section><p class="watch-note">📱✨ ¡Disfruta tus series y películas directamente en tu teléfono! 📺💖 También puedes transmitir el contenido a tu TV inteligente y verlo en pantalla grande. 🍿🎬</p></header>
 <aside id="mensaje-amistoso" role="status" aria-live="polite" aria-atomic="true"><span class="popup-etiqueta">💌 Un mensajito de Zona Entretenimiento</span><p class="popup-texto" id="popup-texto"></p><button id="cerrar-mensaje" type="button" aria-label="Cerrar mensaje">✕</button></aside>
