@@ -80,3 +80,14 @@ body[data-tipo="serie"] .btn.alt:hover{transform:translateY(-2px);border-color:#
 @keyframes zeSweep{0%,60%{left:-45%;opacity:0}70%{opacity:1}90%,100%{left:125%;opacity:0}}
 @keyframes zeCardIn{from{opacity:0;translate:0 10px}to{opacity:1;translate:0 0}}
 @media(prefers-reduced-motion:reduce){body[data-tipo="serie"] .banner:before,body[data-tipo="serie"] .banner:after,body[data-tipo="serie"] .card{animation:none!important}body[data-tipo="serie"] .card,body[data-tipo="serie"] .cover,body[data-tipo="serie"] .cover img,body[data-tipo="serie"] .btn.alt{transition:none!important}}
+
+/* ===== BRILLO VISIBLE EN MÓVIL · SERIES ===== */
+body[data-tipo="serie"] .banner{position:relative;isolation:isolate;overflow:hidden;border-color:#c8a4ff!important;background:linear-gradient(120deg,#301143,#18172e 48%,#122b4a)!important;box-shadow:0 14px 36px #0008,0 0 28px #8d5cff55!important;animation:zeBannerGlow 3s ease-in-out infinite}
+body[data-tipo="serie"] .banner:before{content:"";position:absolute;z-index:-1;inset:-30% auto -30% -55%;width:35%;transform:skewX(-20deg);background:linear-gradient(90deg,transparent,#ffffff45,transparent);animation:zeMobileSweep 5s ease-in-out infinite}
+body[data-tipo="serie"] .card{border:1px solid #8d5cff38;border-radius:16px;box-shadow:0 8px 24px #0007,0 0 16px #8d5cff18}
+body[data-tipo="serie"] .cover{border-color:#c4a4ff55!important;box-shadow:0 8px 22px #0008,0 0 15px #8d5cff25!important}
+body[data-tipo="serie"] .btn.alt{border-color:#ffd58a88!important;background:linear-gradient(120deg,#45152e,#25163d 55%,#17314b)!important;color:#fff!important;box-shadow:0 8px 24px #0008,0 0 20px #8d5cff38!important}
+@keyframes zeBannerGlow{50%{box-shadow:0 14px 36px #0008,0 0 42px #8d5cff77}}
+@keyframes zeMobileSweep{0%,60%{left:-55%;opacity:0}70%{opacity:1}100%{left:140%;opacity:0}}
+@media(prefers-reduced-motion:reduce){body[data-tipo="serie"] .banner,body[data-tipo="serie"] .banner:before{animation:none!important}}
+
