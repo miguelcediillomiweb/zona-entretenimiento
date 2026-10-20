@@ -59,7 +59,9 @@ function mostrarDetalle(n){
     var a=el("a","btn item","▶ "+o.titulo);a.href=botLink(o.codigo);a.target="_blank";a.rel="noopener";
     cont.appendChild(a)})}
 
-function normalizar(v){return String(v||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").trim().toLowerCase()}\nfunction claveColumna(v){return normalizar(v).replace(/[^a-z0-9]+/g,"_").replace(/^_+|_+$/g,"")}\nfunction aliasColumna(k){var a={"codigo_del_bot":"codigo","codigo_bot":"codigo","codigo_telegram":"codigo","nombre_del_titulo":"titulo","nombre_titulo":"titulo","pelicula_serie":"tipo","tipo_de_contenido":"tipo","saga_serie":"saga_o_serie","nombre_de_saga_o_serie":"saga_o_serie","poster":"portada","poster_temporada":"portada_temporada","temporada_numero":"temporada","numero_de_temporada":"temporada","episodio_numero":"episodio","numero_de_episodio":"episodio"};return a[k]||k}
+function normalizar(v){return String(v||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").trim().toLowerCase()}
+function claveColumna(v){return normalizar(v).replace(/[^a-z0-9]+/g,"_").replace(/^_+|_+$/g,"")}
+function aliasColumna(k){var a={"codigo_del_bot":"codigo","codigo_bot":"codigo","codigo_telegram":"codigo","nombre_del_titulo":"titulo","nombre_titulo":"titulo","pelicula_serie":"tipo","tipo_de_contenido":"tipo","saga_serie":"saga_o_serie","nombre_de_saga_o_serie":"saga_o_serie","poster":"portada","poster_temporada":"portada_temporada","temporada_numero":"temporada","numero_de_temporada":"temporada","episodio_numero":"episodio","numero_de_episodio":"episodio"};return a[k]||k}
 function esTipoCorrecto(valor){
   var v=normalizar(valor);
   if(TIPO==="pelicula") return v==="pelicula"||v==="peliculas"||v==="movie"||v==="movies";
