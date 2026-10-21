@@ -1,0 +1,20 @@
+/* Efectos compartidos: no modifica los estilos ni los banners existentes. */
+.fx-fondo{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none;isolation:isolate}
+.fx-fondo .aurora{position:absolute;width:70vw;height:55vh;border-radius:50%;filter:blur(58px);opacity:.19;animation:fxAurora 18s ease-in-out infinite alternate}
+.fx-fondo .a1{top:-20%;left:-15%;background:var(--fx-a,#e51b3e)}
+.fx-fondo .a2{top:22%;right:-25%;background:var(--fx-b,#8d5cff);animation-delay:-7s}
+.fx-fondo .a3{bottom:-28%;left:12%;background:var(--fx-c,#ffd58a);animation-delay:-11s}
+.fx-fondo .haz{position:absolute;top:-20%;height:145%;width:24%;opacity:.08;filter:blur(18px);transform:rotate(24deg);background:linear-gradient(90deg,transparent,#fff,transparent);animation:fxHaz 12s ease-in-out infinite alternate}
+.fx-fondo .h1{left:18%}.fx-fondo .h2{right:17%;animation-delay:-6s}
+.fx-fondo .bokeh{position:absolute;inset:0}
+.fx-fondo .bokeh i{position:absolute;width:4px;height:4px;border-radius:50%;background:#fff;opacity:0;box-shadow:0 0 12px 3px var(--fx-b,#8d5cff);animation:fxBokeh 7s linear infinite}
+.fx-fondo .bokeh i:nth-child(1){left:8%;top:24%;animation-delay:-1s}.fx-fondo .bokeh i:nth-child(2){left:21%;top:68%;animation-delay:-3s}.fx-fondo .bokeh i:nth-child(3){left:35%;top:39%;animation-delay:-5s}.fx-fondo .bokeh i:nth-child(4){left:49%;top:78%;animation-delay:-2s}.fx-fondo .bokeh i:nth-child(5){left:64%;top:19%;animation-delay:-4s}.fx-fondo .bokeh i:nth-child(6){left:79%;top:58%;animation-delay:-6s}
+body[data-tipo="pelicula"]{--fx-a:#e51b3e;--fx-b:#8d5cff;--fx-c:#ffd58a}
+body[data-tipo="serie"]{--fx-a:#087cf0;--fx-b:#00e5ff;--fx-c:#278dff}
+.tira-pelicula{position:fixed;z-index:0;top:0;left:0;right:0;height:8px;pointer-events:none;opacity:.7;background:repeating-linear-gradient(90deg,transparent 0 10px,#ffffffbd 10px 15px,transparent 15px 25px),linear-gradient(90deg,var(--fx-a),var(--fx-b),var(--fx-c));background-size:50px 8px,100% 100%;animation:fxFilm 16s linear infinite}
+.fx-chispa{position:fixed;z-index:9500;pointer-events:none;font-size:1.25rem;line-height:1;will-change:transform,opacity;text-shadow:0 2px 8px #0009}
+@keyframes fxAurora{to{transform:translate3d(13vw,8vh,0) scale(1.15)}}
+@keyframes fxHaz{to{transform:translateX(28vw) rotate(24deg);opacity:.15}}
+@keyframes fxBokeh{0%,100%{transform:translateY(20px) scale(.5);opacity:0}40%,65%{opacity:.65}80%{transform:translateY(-24px) scale(1.2);opacity:0}}
+@keyframes fxFilm{to{background-position:100px 0,0 0}}
+@media(prefers-reduced-motion:reduce){.fx-fondo .aurora,.fx-fondo .haz,.fx-fondo .bokeh i,.tira-pelicula{animation:none!important}}
