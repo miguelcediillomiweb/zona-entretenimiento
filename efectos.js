@@ -23,7 +23,7 @@
     }
   }
   document.addEventListener('pointerdown',function(e){
-    var t=e.target.closest&&e.target.closest('.btn,.order,.install-button');
+    var t=e.target.closest&&e.target.closest('.btn,.order,.install-button,.choice');
     if(t)explosion(e.clientX,e.clientY);
   },{passive:true});
 })();
