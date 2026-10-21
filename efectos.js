@@ -1,19 +1,29 @@
-/* Emojis solo en botones de acción; nunca en las portadas del catálogo. */
+/* Emojis al tocar botones - Zona Entretenimiento */
 (function(){
-  if(!document.body || !document.body.matches('[data-tipo]')) return;
-  var emojis=document.body.dataset.tipo==='serie'?['📺','✨','💠','🔹']:['🎬','🍿','✨','🌟'];
-  var max=6;
-  document.addEventListener('click',function(ev){
-    var btn=ev.target.closest('a.btn,button,.btn, .order, .choice, .install-button');
-    if(!btn || btn.closest('.card') || btn.matches('.cover')) return;
-    var x=ev.clientX,y=ev.clientY;
-    if(!x&&!y){var r=btn.getBoundingClientRect();x=r.left+r.width/2;y=r.top+r.height/2}
-    for(var i=0;i<max;i++){
-      var el=document.createElement('span');el.className='fx-chispa';el.textContent=emojis[i%emojis.length];
-      el.style.left=x+'px';el.style.top=y+'px';document.body.appendChild(el);
-      var dx=(Math.random()-.5)*110,dy=-25-Math.random()*95,rot=(Math.random()-.5)*70;
-      var anim=el.animate([{transform:'translate(-50%,-50%) scale(.45) rotate(0deg)',opacity:1},{transform:'translate(calc(-50% + '+dx+'px),calc(-50% + '+dy+'px)) scale(1.15) rotate('+rot+'deg)',opacity:0}],{duration:650+Math.random()*250,easing:'cubic-bezier(.15,.7,.25,1)'});
-      anim.onfinish=function(){this.effect.target.remove()};
+  if(!document.body||!Element.prototype.animate)return;
+  var emojis=['✨','🍿','🎬','💖'];
+  function explosion(x,y){
+    for(var i=0;i<10;i++){
+      var s=document.createElement('span');
+      s.className='fx-chispa';
+      s.textContent=emojis[Math.floor(Math.random()*emojis.length)];
+      s.style.left=x+'px';
+      s.style.top=y+'px';
+      document.body.appendChild(s);
+      var ang=Math.random()*Math.PI*2;
+      var dist=50+Math.random()*70;
+      var dx=Math.cos(ang)*dist;
+      var dy=Math.sin(ang)*dist-40;
+      var giro=Math.random()*360-180;
+      var anim=s.animate([
+        {transform:'translate(-50%,-50%) scale(.4)',opacity:1},
+        {transform:'translate(calc(-50% + '+dx+'px),calc(-50% + '+dy+'px)) scale(1.2) rotate('+giro+'deg)',opacity:0}
+      ],{duration:700+Math.random()*300,easing:'cubic-bezier(.2,.8,.3,1)'});
+      anim.onfinish=(function(el){return function(){el.remove();};})(s);
     }
+  }
+  document.addEventListener('pointerdown',function(e){
+    var t=e.target.closest&&e.target.closest('.btn,.order,.install-button');
+    if(t)explosion(e.clientX,e.clientY);
   },{passive:true});
 })();
