@@ -301,7 +301,7 @@ function mostrarPopup(){let indice=Math.floor(Math.random()*mensajesAmistosos.le
 cerrarPopup.addEventListener('click',ocultarPopup);
 programarPopup();
 
-if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(err=>console.error('No se pudo activar el modo app:',err)));}
+
 })();</script><!-- ONESIGNAL (NOTIFICACIONES) — app "Catálogo y Películas". Etiqueta de esta página: peliculas = si -->
 <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
 <script>
@@ -309,7 +309,7 @@ if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.se
   OneSignalDeferred.push(async function(OneSignal) {
     await OneSignal.init({
       appId: "7aba97c6-14da-43b9-bddb-89aa766d321e",
-      serviceWorkerPath: "zona-entretenimiento/sw.js",
+      serviceWorkerPath: "/zona-entretenimiento/sw.js",
       serviceWorkerParam: { scope: "/zona-entretenimiento/" }
     });
     try { OneSignal.User.addTag("peliculas", "si"); } catch (e) {}
