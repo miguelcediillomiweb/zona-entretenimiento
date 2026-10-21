@@ -1,5 +1,6 @@
 /* Efectos compartidos: no modifica los estilos ni los banners existentes. */
-.fx-fondo{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none;isolation:isolate}
+body>:not(.fx-fondo):not(.tira-pelicula){position:relative;z-index:1}
+.fx-fondo{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;isolation:isolate}
 .fx-fondo .aurora{position:absolute;width:70vw;height:55vh;border-radius:50%;filter:blur(58px);opacity:.19;animation:fxAurora 18s ease-in-out infinite alternate}
 .fx-fondo .a1{top:-20%;left:-15%;background:var(--fx-a,#e51b3e)}
 .fx-fondo .a2{top:22%;right:-25%;background:var(--fx-b,#8d5cff);animation-delay:-7s}
