@@ -1,0 +1,21 @@
+/* TARJETAS MAGIC CARD | Origen: Uiverse.io by alexruix
+   Se aplican a las tarjetas del inicio (.choice) y a las del catalogo (.card).
+   Colores del borde: cambia --ue-grad. Grosor del borde: --ue-borde.
+   (El brillo usa box-shadow en vez de un blur pesado, para que vaya fluido en el celular.) */
+html body .card,html body .choices .choice{
+  --ue-grad:linear-gradient(to left,#f7ba2b 0%,#ea5358 100%);
+  --ue-borde:4px;
+  border:var(--ue-borde) solid transparent!important;
+  border-radius:1rem!important;
+  background:linear-gradient(#181818,#181818) padding-box,var(--ue-grad) border-box!important;
+  box-shadow:0 14px 26px -8px #ea535899!important;
+  animation:none!important}
+html body .card{transition:box-shadow .5s,transform .2s}
+html body .card::after,html body .choices .choice::after{content:none!important;display:none!important}
+html body .card .cover{border-radius:calc(1rem - var(--ue-borde))}
+html body .card .nombre{margin-top:0;padding:7px 4px 8px;color:#fff;background:#181818;border-radius:0 0 .7rem .7rem}
+html body .card:hover,html body .choices .choice:hover{box-shadow:0 0 0 0 transparent!important}
+html body .card:hover .nombre{color:#f7ba2b;transition:color 1s}
+html body .choices .choice:hover strong{color:#f7ba2b;transition:color 1s}
+html body .choices .choice::before{display:none!important}
+html body .choices .choice:active,html body .choices .choice:focus-visible{border-color:transparent!important;box-shadow:0 0 0 0 transparent!important;filter:none!important}

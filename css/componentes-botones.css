@@ -1,0 +1,32 @@
+/* BOTONES DEGRADADOS | Origen: Uiverse.io by M4rco592
+   Se aplican a: boton de pedido y de instalar (inicio), 'Volver al inicio' (series, peliculas, pedidos).
+   Los botones de ENVIAR del formulario usan el modelo del formulario (componentes-formulario.css).
+   Colores del aro: cambia los colores de conic-gradient (se repite en 3 lugares). */
+html body .order,html body .install-button,html body .btn-home,html body[data-tipo] main>a.btn.alt{
+  position:relative!important;isolation:isolate!important;overflow:hidden!important;
+  border:0!important;background:transparent!important;box-shadow:none!important;animation:none!important;
+  color:#fff!important;font-weight:700;cursor:pointer;
+  --ue-r:50px;border-radius:var(--ue-r)!important;
+  transition:transform .2s ease!important;filter:none!important}
+html body .order{--ue-r:30px}
+html body .btn-home,html body[data-tipo] main>a.btn.alt{width:fit-content;max-width:100%;padding:16px 32px!important;margin-left:auto!important;margin-right:auto!important}
+html body .order::before,html body .install-button::before,html body .btn-home::before,html body[data-tipo] main>a.btn.alt::before{
+  content:"";display:block!important;position:absolute!important;top:-50%!important;left:-50%!important;right:auto!important;bottom:auto!important;
+  width:200%!important;height:200%!important;padding:0!important;
+  background:conic-gradient(from 0deg,#ff6b6b,#4ecdc4,#45b7d1,#96ceb4,#feca57,#ff9ff3,#ff6b6b)!important;z-index:-2!important;filter:blur(10px)!important;
+  transform:rotate(0deg)!important;transition:transform 1.5s ease-in-out!important;animation:none!important;
+  -webkit-mask:none!important;mask:none!important;opacity:1!important}
+html body .order::after,html body .install-button::after,html body .btn-home::after,html body[data-tipo] main>a.btn.alt::after{
+  content:"";display:block!important;position:absolute!important;inset:3px!important;padding:0!important;
+  background:#000!important;border-radius:calc(var(--ue-r) - 3px)!important;z-index:-1!important;filter:blur(5px)!important;
+  transform:none!important;animation:none!important;-webkit-mask:none!important;mask:none!important;opacity:1!important}
+html body .order:hover::before,html body .install-button:hover::before,html body .btn-home:hover::before,html body[data-tipo] main>a.btn.alt:hover::before{transform:rotate(180deg)!important}
+html body .order:hover,html body .install-button:hover,html body .btn-home:hover,html body[data-tipo] main>a.btn.alt:hover{transform:scale(1.03)!important}
+html body .order:active,html body .install-button:active,html body .btn-home:active,html body[data-tipo] main>a.btn.alt:active{transform:scale(.99)!important}
+/* Texto con degradado (solo donde el HTML tiene un span propio) */
+html body .order .order-main,html body .order .order-sub,html body .ue-texto{
+  position:relative;color:transparent!important;-webkit-text-fill-color:transparent;
+  background:conic-gradient(from 0deg,#ff6b6b,#4ecdc4,#45b7d1,#96ceb4,#feca57,#ff9ff3,#ff6b6b);-webkit-background-clip:text;background-clip:text}
+html body .order:hover .order-main,html body .order:hover .order-sub,html body .btn-home:hover .ue-texto,html body main>a.btn.alt:hover .ue-texto{animation:ueHue 2s linear infinite}
+@keyframes ueHue{to{filter:hue-rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){html body .order:hover .order-main,html body .order:hover .order-sub,html body .ue-texto{animation:none!important}}

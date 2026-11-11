@@ -1,0 +1,25 @@
+/* FORMULARIO (pedidos y reporte de problemas) | Origen: Uiverse.io by mi-series (modelo Sign up)
+   Colores del modelo: crema #EDDCD9, tinta #264143, naranja #E99F4C, rosa #DE5499.
+   Para cambiar la paleta, reemplaza esos 4 colores en este archivo. */
+html body .form-card{background:#EDDCD9!important;border:2px solid #264143!important;border-radius:20px!important;box-shadow:3px 4px 0 1px #E99F4C!important;color:#264143}
+html body .form-card::after{content:none!important;display:none!important}
+html body .form-card .intro{color:#264143!important;font-weight:900;text-align:center}
+html body .form-card .field label{color:#264143!important;font-weight:600}
+html body .form-card .field label::before{color:#DE5499!important;animation:none!important}
+html body .form-card .field label span{color:#5d6b6d!important}
+html body .form-card .hint{color:#4f5f61!important}
+html body .form-card .status{color:#264143!important;font-weight:700}
+html body .form-card input,html body .form-card select,html body .form-card textarea{
+  background:#fff!important;color:#264143!important;border:2px solid #264143!important;border-radius:4px!important;
+  box-shadow:3px 4px 0 1px #E99F4C!important;padding:12px 10px!important;font-size:15px!important;outline:none;
+  transition:transform .15s,box-shadow .15s}
+html body .form-card input::placeholder,html body .form-card textarea::placeholder{color:#7a8a8c}
+html body .form-card input:focus,html body .form-card select:focus,html body .form-card textarea:focus{
+  background:#fff!important;border-color:#264143!important;transform:translateY(4px);box-shadow:1px 2px 0 0 #E99F4C!important}
+html body .form-card .submit-btn{
+  background:#DE5499!important;color:#264143!important;border:2px solid #264143!important;border-radius:10px!important;
+  box-shadow:3px 3px 0 0 #E99F4C!important;animation:none!important;filter:none!important;
+  font-weight:800;padding:15px!important;margin-top:22px;transition:transform .15s,box-shadow .15s,opacity .2s}
+html body .form-card .submit-btn::before,html body .form-card .submit-btn::after{display:none!important}
+html body .form-card .submit-btn:not(:disabled):hover{opacity:.9;filter:none!important;transform:none}
+html body .form-card .submit-btn:not(:disabled):focus,html body .form-card .submit-btn:not(:disabled):active{transform:translateY(4px);box-shadow:1px 2px 0 0 #E99F4C!important}

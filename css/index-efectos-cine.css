@@ -1,0 +1,77 @@
+/* Efectos de cine | Origen: bloque <style id="efectos-cine"> de index.html */
+@property --ang{syntax:"<angle>";initial-value:0deg;inherits:false}
+
+/* Fondo aurora */
+.fx-fondo{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
+.aurora{position:absolute;width:70vmax;height:70vmax;border-radius:50%;opacity:.42;will-change:transform;animation:auroraMueve 18s ease-in-out infinite alternate}
+.a1{left:-25vmax;top:-20vmax;background:radial-gradient(circle,#ff304f 0,transparent 65%)}
+.a2{right:-30vmax;top:20vh;background:radial-gradient(circle,#5b8cff 0,transparent 65%);animation-duration:23s;animation-delay:-6s}
+.a3{left:5vmax;bottom:-35vmax;background:radial-gradient(circle,#bd5bff 0,transparent 65%);animation-duration:27s;animation-delay:-11s}
+@keyframes auroraMueve{to{transform:translate3d(12vmax,9vmax,0) scale(1.15)}}
+
+/* Haces de proyector */
+.haz{position:absolute;top:-10vh;width:38vmax;height:120vh;opacity:.14;transform-origin:50% 0;background:linear-gradient(180deg,#fff 0,transparent 75%);clip-path:polygon(46% 0,54% 0,100% 100%,0 100%);animation:hazA 9s ease-in-out infinite alternate}
+.h1{left:5%}
+.h2{right:5%;animation-name:hazB;animation-delay:-4s}
+@keyframes hazA{from{transform:rotate(-18deg)}to{transform:rotate(-6deg)}}
+@keyframes hazB{from{transform:rotate(18deg)}to{transform:rotate(6deg)}}
+
+/* Destellos que suben */
+.bokeh i{position:absolute;bottom:-20px;width:8px;height:8px;border-radius:50%;background:#ffd166;box-shadow:0 0 10px 2px #ffd16699;opacity:0;animation:bokehSube 14s linear infinite}
+.bokeh i:nth-child(even){animation-duration:10s}
+.bokeh i:nth-child(3n){background:#ff6db5;box-shadow:0 0 10px 2px #ff6db599;width:6px;height:6px}
+.bokeh i:nth-child(3n+1){background:#70f1ff;box-shadow:0 0 10px 2px #70f1ff99}
+.bokeh i:nth-child(1){left:5%}
+.bokeh i:nth-child(2){left:14%;animation-delay:-3s}
+.bokeh i:nth-child(3){left:23%;animation-delay:-7s}
+.bokeh i:nth-child(4){left:32%;animation-delay:-1s}
+.bokeh i:nth-child(5){left:41%;animation-delay:-9s}
+.bokeh i:nth-child(6){left:50%;animation-delay:-5s}
+.bokeh i:nth-child(7){left:59%;animation-delay:-11s}
+.bokeh i:nth-child(8){left:68%;animation-delay:-2s}
+.bokeh i:nth-child(9){left:77%;animation-delay:-8s}
+.bokeh i:nth-child(10){left:86%;animation-delay:-4s}
+.bokeh i:nth-child(11){left:94%;animation-delay:-10s}
+.bokeh i:nth-child(12){left:36%;animation-delay:-6s}
+@keyframes bokehSube{0%{opacity:0;transform:translateY(0)}15%{opacity:.9}100%{opacity:0;transform:translateY(-105vh) translateX(22px)}}
+
+/* Tira de película */
+.tira-pelicula{height:30px;width:min(760px,calc(100% - 36px));margin:0 auto 14px;border-radius:6px;border:1px solid #ffffff22;background:
+repeating-linear-gradient(90deg,#f3e3b0 0 10px,transparent 10px 20px) 0 4px/100% 5px no-repeat,
+repeating-linear-gradient(90deg,#f3e3b0 0 10px,transparent 10px 20px) 0 calc(100% - 4px)/100% 5px no-repeat,
+linear-gradient(90deg,#1a1a22,#2a1f33,#1a1a22);
+animation:tiraCorre 1.2s linear infinite}
+@keyframes tiraCorre{to{background-position:20px 4px,20px calc(100% - 4px),0 0}}
+
+/* Banners: luz que recorre el contorno */
+.banner:after,.clock-card:after,.telegram-banner:after,.install-banner:after,.choice:after,.order:after{
+background:conic-gradient(from var(--ang),transparent 0 70%,var(--edge-neon,#ff304f) 85%,transparent 100%);
+animation-name:luzBorde;animation-duration:4s;animation-timing-function:linear;animation-iteration-count:infinite}
+@keyframes luzBorde{to{--ang:360deg}}
+
+/* Banners: brillo que los barre */
+.banner,.clock-card,.telegram-banner,.install-banner{overflow:hidden}
+.banner:before,.clock-card:before,.telegram-banner:before,.install-banner:before{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;z-index:4;pointer-events:none;background:linear-gradient(100deg,transparent,#ffffff2e,transparent);transform:skewX(-20deg);animation:brilloBarre 5.5s ease-in-out infinite}
+.clock-card:before{animation-delay:1.2s}
+.telegram-banner:before{animation-delay:2.4s}
+.install-banner:before{animation-delay:3.6s}
+@keyframes brilloBarre{0%,55%{transform:skewX(-20deg) translateX(0)}100%{transform:skewX(-20deg) translateX(520%)}}
+
+/* Título con degradado en movimiento */
+.banner h1{background:linear-gradient(90deg,#fff,#ffd166,#ff6db5,#70f1ff,#fff);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:tituloBrillo 6s linear infinite}
+@keyframes tituloBrillo{to{background-position:250% 0}}
+
+/* Emojis: que se muevan siempre */
+.sun,.clock-spark,.telegram-icon,.install-symbol,.steps-intro,.choices .choice .icon-video{will-change:transform}
+@media(prefers-reduced-motion:reduce){
+.sun{animation:zeEmojiWiggle 2.4s ease-in-out infinite!important}
+.clock-spark{animation:zeSparkle 1.8s ease-in-out infinite!important}
+.telegram-icon{animation:zeFly 1.8s ease-in-out infinite!important}
+.install-symbol{animation:zeEmojiBounce 1.6s ease-in-out infinite!important}
+.steps-intro{animation:zeTextGlow 2.6s ease-in-out infinite!important}
+.choices .choice .icon-video{animation:zeEmojiBounce 1.8s ease-in-out infinite!important}
+.banner:after,.clock-card:after,.telegram-banner:after,.install-banner:after,.choice:after,.order:after{animation:luzBorde 4s linear infinite!important}
+}
+
+/* Emojis al tocar */
+.fx-chispa{position:fixed;z-index:9500;pointer-events:none;font-size:1.3rem;will-change:transform,opacity}
