@@ -9,3 +9,7 @@
 @keyframes ue_loading{0%{width:16px;transform:translateX(0)}40%{width:100%;transform:translateX(0)}80%{width:16px;transform:translateX(64px)}90%{width:100%;transform:translateX(0)}100%{width:16px;transform:translateX(0)}}
 @keyframes ue_loading2{0%{transform:translateX(0);width:16px}40%{transform:translateX(0);width:80%}80%{width:100%;transform:translateX(0)}90%{width:80%;transform:translateX(15px)}100%{transform:translateX(0);width:16px}}
 @media(prefers-reduced-motion:reduce){.ue-loader-text,.ue-load,.ue-load::before{animation:none}}
+/* Pantalla de carga del telon de bienvenida (index.html): sale a los 6 s = 2 s de cortina + 4 s de carga.
+   Si cambias el tiempo, cambia 6s en css/index-base.css (retirarTelon) y 6000 en js/saludo-reloj-telon.js */
+#bienvenida-cine .ue-cargando{padding:0;margin:14px 0 32px}
+#bienvenida-cine .ue-loader{transform:scale(1.5)}

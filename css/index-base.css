@@ -7,7 +7,7 @@ main{width:min(900px,100%);margin:auto;padding:16px 18px 40px;text-align:center}
 
 /* Telón de bienvenida: duración reducida a 3.5 segundos */
 .sin-telon-inicial #bienvenida-cine{display:none!important}
-#bienvenida-cine{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#100006;animation:retirarTelon 0s 3.5s forwards}
+#bienvenida-cine{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#100006;animation:retirarTelon 0s 6s forwards}
 #bienvenida-cine .cortina{position:absolute;top:0;bottom:0;width:51%;background:repeating-linear-gradient(90deg,#65000c 0,#9d0719 9%,#c10d25 16%,#76000e 23%,#a8071a 31%);box-shadow:inset 0 0 45px #250006,0 0 25px #0009}
 #bienvenida-cine .cortina.izquierda{left:0;border-right:3px solid #e7b85b;animation:abrirIzquierda 2s ease-in-out forwards}
 #bienvenida-cine .cortina.derecha{right:0;border-left:3px solid #e7b85b;animation:abrirDerecha 2s ease-in-out forwards}
