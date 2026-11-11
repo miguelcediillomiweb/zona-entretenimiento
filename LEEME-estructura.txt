@@ -1,0 +1,40 @@
+MAPA DE ARCHIVOS - Zona Entretenimiento
+
+PAGINAS (solo estructura/contenido)
+  index.html       Pagina principal
+  series.html      Series
+  peliculas.html   Peliculas
+  pedido.html      Pedidos (su script del formulario sigue dentro del HTML)
+
+ESTILOS (lo visual)
+  css/index-base.css                 Estilos base de la principal
+  css/index-acabado-global.css       Acabado global estilo cine
+  css/index-brillo.css               Brillo visible
+  css/index-netflix.css              Estilo tipo Netflix
+  css/index-rapidez.css              Ajustes de rapidez y pedido
+  css/index-instalacion-mensajito.css  Banner de instalacion y mensajito
+  css/index-efectos-cine.css         Efectos de cine
+  css/pedido-base.css / pedido-brillo.css
+  css/peliculas-cine.css / peliculas-brillo.css
+  css/fondo-estrellas.css        Fondo de estrellas (4 paginas)
+  css/componentes-loader.css     Barra de cargando (series, peliculas)
+  css/componentes-tarjetas.css   Tarjetas Magic Card (inicio y catalogo)
+  css/componentes-botones.css    Botones degradados
+  css/componentes-formulario.css Formulario modelo Sign up (pedidos y reportes)
+  style.css, catalogo.css, efectos.css   (ya existian, siguen igual)
+
+  IMPORTANTE: el orden en que cada HTML enlaza los CSS es el mismo
+  que tenia antes. No lo cambies o el diseno puede variar.
+
+SCRIPTS
+  js/saludo-reloj-telon.js   Saludo, fecha/reloj, telon de bienvenida
+  js/instalacion.js          Boton de instalar la app
+  js/mensajito.js            Mensajito amistoso (textos al inicio)
+  js/chispas.js              Emojis al tocar tarjetas
+  js/tarjetas.js             Retraso de 300 ms al abrir tarjetas
+  js/onesignal.js            Notificaciones
+  catalogo.js, efectos.js    (ya existian, siguen igual)
+
+NO TOCAR: sw.js, manifest.json, icon.svg, videos y portadas.
+Nota: sw.js solo cambio en la version de cache (v13) y en la lista de
+archivos nuevos, para que el celular descargue la version actualizada.
