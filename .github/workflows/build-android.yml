@@ -50,3 +50,5 @@ jobs:
           if-no-files-found: error
 
 # La compatibilidad AndroidX se activa en android-app/gradle.properties.
+
+# Reconstruir con el ajuste final del dominio y los enlaces externos.
