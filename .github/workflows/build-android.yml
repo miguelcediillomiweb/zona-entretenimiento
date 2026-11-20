@@ -48,3 +48,5 @@ jobs:
           name: zona-entretenimiento-debug
           path: android-app/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
+
+# La compatibilidad AndroidX se activa en android-app/gradle.properties.
