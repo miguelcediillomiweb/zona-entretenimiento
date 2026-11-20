@@ -56,7 +56,7 @@ function mostrarDetalle(n){
         im.style.cssText="display:block;width:160px;max-width:60%;margin:8px auto 12px;border-radius:12px;box-shadow:0 4px 14px #0008";
         im.onerror=function(){im.remove()};
         cont.appendChild(im)}}
-    var a=el("a","btn item","▶ "+o.titulo);a.href=botLink(o.codigo);a.target="_blank";a.rel="noopener";
+    var a=el("a","btn item","▶ "+o.titulo);a.href=botLink(o.codigo);a.target="_self";
     cont.appendChild(a)})}
 
 function normalizar(v){return String(v||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").trim().toLowerCase()}
