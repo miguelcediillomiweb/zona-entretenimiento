@@ -8,6 +8,10 @@ import android.webkit.WebViewClient
 import android.widget.LinearLayout
 import android.widget.TextView
 import org.json.JSONObject
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import com.onesignal.OneSignal
 import java.net.HttpURLConnection
 import java.net.URL
 
@@ -79,6 +83,9 @@ class MainActivity : Activity() {
             loadUrl(websiteUrl)
         }
         root.addView(webView)
+        CoroutineScope(Dispatchers.IO).launch {
+            OneSignal.Notifications.requestPermission(false)
+        }
     }
 
     private fun showSuspended(message: String) {
