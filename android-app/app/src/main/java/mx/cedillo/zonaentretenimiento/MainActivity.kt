@@ -22,7 +22,7 @@ class MainActivity : Activity() {
     private val websiteUrl = "https://miguelcediillomiweb.github.io/zona-entretenimiento/"
     private val controlUrl = "https://raw.githubusercontent.com/miguelcediillomiweb/zona-entretenimiento/app-android-separada/android-app/app-config.json"
     private lateinit var root: LinearLayout
-    private val internalHost = "miguelcediillomi.github.io"
+    private val internalHost = "miguelcediillomiweb.github.io"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
