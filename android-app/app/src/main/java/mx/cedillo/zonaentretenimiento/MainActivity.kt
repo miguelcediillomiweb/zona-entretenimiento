@@ -12,8 +12,8 @@ import java.net.HttpURLConnection
 import java.net.URL
 
 class MainActivity : Activity() {
-    private val websiteUrl = "https://miguelcediillomi.github.io/zona-entretenimiento/"
-    private val controlUrl = "https://raw.githubusercontent.com/miguelcediillomi/zona-entretenimiento/app-android-separada/android-app/app-config.json"
+    private val websiteUrl = "https://miguelcediillomiweb.github.io/zona-entretenimiento/"
+    private val controlUrl = "https://raw.githubusercontent.com/miguelcediillomiweb/zona-entretenimiento/app-android-separada/android-app/app-config.json"
     private lateinit var root: LinearLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
