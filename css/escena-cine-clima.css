@@ -144,3 +144,6 @@
   .mesa-palomitas,.mesa-refresco{font-size:clamp(25px,7vw,36px);top:-29px;transform:translateY(8px)}
   .sala-pantalla-frente{left:4%;right:4%;height:15%}
 }
+
+/* La luz nocturna nace de la pantalla en primer plano, no de la pared. */
+.sala-luz{display:none!important}
