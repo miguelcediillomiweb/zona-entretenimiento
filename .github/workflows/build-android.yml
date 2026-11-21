@@ -52,3 +52,5 @@ jobs:
 # La compatibilidad AndroidX se activa en android-app/gradle.properties.
 
 # Reconstruir con el ajuste final del dominio y los enlaces externos.
+
+# Reintento: verificar google-services.json ya incorporado al modulo app.
