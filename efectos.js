@@ -27,3 +27,33 @@
     if(t)explosion(e.clientX,e.clientY);
   },{passive:true});
 })();
+
+/* Origen APP: solo actúa dentro de la aplicación (?origen=app) */
+(function () {
+  try {
+    if (new URLSearchParams(location.search).get("origen") !== "app") return;
+
+    function marcar(a) {
+      var h = a.getAttribute("href");
+      if (!h || !/^[a-z0-9_\-]+\.html(\?|#|$)/i.test(h)) return;
+      if (/[?&]origen=/.test(h)) return;
+      a.setAttribute("href", h + (h.indexOf("?") > -1 ? "&" : "?") + "origen=app");
+    }
+
+    function marcarTodos() {
+      var links = document.querySelectorAll("a[href]");
+      for (var i = 0; i < links.length; i++) marcar(links[i]);
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", marcarTodos);
+    } else {
+      marcarTodos();
+    }
+
+    document.addEventListener("click", function (e) {
+      var a = e.target.closest && e.target.closest("a[href]");
+      if (a) marcar(a);
+    }, true);
+  } catch (x) {}
+})();
