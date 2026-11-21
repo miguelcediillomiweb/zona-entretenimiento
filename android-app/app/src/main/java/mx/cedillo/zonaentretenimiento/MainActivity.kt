@@ -13,6 +13,7 @@ import android.view.View
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import android.webkit.WebSettings
 import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
@@ -41,7 +42,10 @@ class MainActivity : Activity() {
         super.onNewIntent(intent)
         setIntent(intent)
         if (intent.data?.scheme == "zonaentretenimiento") {
-            webViewActual?.loadUrl(websiteUrl)
+            webViewActual?.let { view ->
+                view.clearCache(true)
+                view.loadUrl("$websiteUrl&actualizar=${System.currentTimeMillis()}")
+            }
         }
     }
 
@@ -327,6 +331,8 @@ class MainActivity : Activity() {
             settings.mediaPlaybackRequiresUserGesture = false
             settings.javaScriptCanOpenWindowsAutomatically = false
             settings.setSupportMultipleWindows(false)
+            // La web es remota: evita que la APK conserve HTML/CSS/JS antiguos entre aperturas.
+            settings.cacheMode = WebSettings.LOAD_NO_CACHE
             webViewClient = object : WebViewClient() {
                 override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
                     return openExternalLink(url)
@@ -347,7 +353,8 @@ class MainActivity : Activity() {
                     )
                 }
             }
-            loadUrl(websiteUrl)
+            clearCache(true)
+            loadUrl("$websiteUrl&actualizar=${System.currentTimeMillis()}")
         }
 
         webViewActual = webView
