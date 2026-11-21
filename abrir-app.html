@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
-<title>Abriendo Zona Entretenimiento…</title>
+<title>Zona Entretenimiento</title>
 <style>
   html,body{height:100%;margin:0}
   body{display:flex;align-items:center;justify-content:center;background:#0b0b1a;color:#fff;font-family:system-ui,sans-serif;text-align:center;padding:24px;box-sizing:border-box}
@@ -12,15 +12,13 @@
   h1{font-size:1.25rem;margin:0 0 8px}
   p{opacity:.8;margin:0 0 20px;font-size:.95rem}
   a{display:block;margin:10px 0;padding:14px;border-radius:12px;text-decoration:none;font-weight:700;color:#fff;background:linear-gradient(90deg,#7b2ff7,#f107a3)}
-  a.alt{background:transparent;border:1px solid #ffffff55}
 </style>
 </head>
 <body>
 <div class="caja">
-  <h1>🎬 Abriendo la app…</h1>
-  <p>Si no se abre sola, toca el botón.</p>
+  <h1>🎬 Zona Entretenimiento</h1>
+  <p>Abriendo la app… Si no se abre sola, toca el botón. Si no la tienes, te llevo a la web.</p>
   <a id="abrir" href="#">📱 Abrir la app</a>
-  <a class="alt" href="https://miguelcediillomiweb.github.io/zona-entretenimiento/">🌐 Ir a la web</a>
 </div>
 <script>
 (function () {
@@ -28,20 +26,23 @@
   var PKG = "mx.cedillo.zonaentretenimiento";
   var INTENT = "intent://catalogo#Intent;scheme=zonaentretenimiento;package=" + PKG +
                ";S.browser_fallback_url=" + encodeURIComponent(WEB) + ";end";
-  var salio = false;
+  var salio = false, t;
 
-  document.addEventListener("visibilitychange", function () { if (document.hidden) salio = true; });
-  window.addEventListener("pagehide", function () { salio = true; });
+  function irWeb() { location.replace(WEB); }
+  function marcar() { salio = true; clearTimeout(t); }
 
-  function abrir() { location.href = INTENT; }
+  document.addEventListener("visibilitychange", function () { if (document.hidden) marcar(); });
+  window.addEventListener("pagehide", marcar);
 
   document.getElementById("abrir").addEventListener("click", function (e) {
     e.preventDefault();
-    abrir();
+    clearTimeout(t);
+    location.href = INTENT;
+    t = setTimeout(function () { if (!salio) irWeb(); }, 3000);
   });
 
-  abrir();
-  setTimeout(function () { if (!salio) location.replace(WEB); }, 3000);
+  setTimeout(function () { location.href = INTENT; }, 400);
+  t = setTimeout(function () { if (!salio) irWeb(); }, 10000);
 })();
 </script>
 </body>
