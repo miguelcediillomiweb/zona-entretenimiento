@@ -1,4 +1,4 @@
-/* Mensajito amistoso que aparece cada cierto tiempo (textos editables arriba) */
+/* Mensajito de apoyo: discreto y nunca aparece mientras se reproduce contenido. */
 (()=>{
 const mensajesAmistosos=[
 '🎬💌 Recuerda que este contenido lo haces tú. ¡Manda tus peticiones y ayudemos a que la zona siga creciendo! 🍿✨',
@@ -7,10 +7,15 @@ const mensajesAmistosos=[
 '🙏💝 Decir gracias no cuesta nada… ¡pero si viene acompañado de un café, mucho mejor! ☕😄✨'
 ];
 const popup=document.getElementById('mensaje-amistoso'),textoPopup=document.getElementById('popup-texto'),cerrarPopup=document.getElementById('cerrar-mensaje');
-let temporizadorPopup=null,temporizadorSiguiente=null,ultimoMensaje=-1;
-const ocultarPopup=()=>{popup.classList.remove('visible');clearTimeout(temporizadorPopup);programarPopup();};
-const programarPopup=()=>{clearTimeout(temporizadorSiguiente);const espera=45000+Math.floor(Math.random()*30001);temporizadorSiguiente=setTimeout(mostrarPopup,espera);};
-function mostrarPopup(){let indice=Math.floor(Math.random()*mensajesAmistosos.length);if(mensajesAmistosos.length>1&&indice===ultimoMensaje)indice=(indice+1+Math.floor(Math.random()*(mensajesAmistosos.length-1)))%mensajesAmistosos.length;ultimoMensaje=indice;textoPopup.textContent=mensajesAmistosos[indice];popup.classList.add('visible');temporizadorPopup=setTimeout(()=>{popup.classList.remove('visible');programarPopup();},9500);}
-cerrarPopup.addEventListener('click',ocultarPopup);
-programarPopup();
+if(!popup||!textoPopup||!cerrarPopup)return;
+let temporizadorPopup=null,temporizadorSiguiente=null,ultimoMensaje=-1,pausado=false;
+const reproduciendo=()=>Array.from(document.querySelectorAll('video,audio')).some(m=>!m.paused&&!m.ended&&m.readyState>2);
+const ocultar=()=>{popup.classList.remove('visible');clearTimeout(temporizadorPopup);};
+const programar=()=>{clearTimeout(temporizadorSiguiente);temporizadorSiguiente=setTimeout(mostrar,180000);};
+function mostrar(){if(document.hidden||reproduciendo()){programar();return;}let i=Math.floor(Math.random()*mensajesAmistosos.length);if(mensajesAmistosos.length>1&&i===ultimoMensaje)i=(i+1)%mensajesAmistosos.length;ultimoMensaje=i;textoPopup.textContent=mensajesAmistosos[i];popup.classList.add('visible');temporizadorPopup=setTimeout(()=>{ocultar();programar();},6500);}
+function cerrar(){ocultar();programar();}
+cerrarPopup.addEventListener('click',cerrar);
+document.addEventListener('visibilitychange',()=>{if(document.hidden)ocultar();});
+document.addEventListener('play',()=>{ocultar();},{capture:true});
+programar();
 })();
