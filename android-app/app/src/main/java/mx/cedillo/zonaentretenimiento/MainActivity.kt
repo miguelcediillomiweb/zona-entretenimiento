@@ -83,7 +83,7 @@ class MainActivity : Activity() {
     private fun licensePrefs(): SharedPreferences =
         getSharedPreferences(prefsName, MODE_PRIVATE)
 
-    private fun getDeviceId(): String {
+    private fun getLicenseDeviceId(): String {
         val prefs = licensePrefs()
         val saved = prefs.getString("device_id", null)
         if (!saved.isNullOrBlank()) return saved
@@ -175,7 +175,7 @@ class MainActivity : Activity() {
             val body = JSONObject()
                 .put("action", action)
                 .put("code", code)
-                .put("deviceId", getDeviceId())
+                .put("deviceId", getLicenseDeviceId())
                 .toString()
 
             connection.outputStream.use {
