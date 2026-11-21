@@ -22,7 +22,7 @@ class MainActivity : Activity() {
     private val websiteUrl = "https://miguelcediillomiweb.github.io/zona-entretenimiento/?origen=app"
     private val controlUrl = "https://raw.githubusercontent.com/miguelcediillomiweb/zona-entretenimiento/app-android-separada/android-app/app-config.json"
     private lateinit var root: LinearLayout
-    private val internalHost = "miguelcediillomiillomiweb.github.io"
+    private val internalHost = "miguelcediillomiweb.github.io"
     private var webViewActual: WebView? = null
 
     override fun onNewIntent(intent: Intent) {
