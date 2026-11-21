@@ -6,7 +6,7 @@ var URL_HOJA="https://docs.google.com/spreadsheets/d/"+SHEET_ID+"/gviz/tq?tqx=ou
 var grupos={},nombres=[];
 
 function el(tag,cls,txt){var e=document.createElement(tag);if(cls)e.className=cls;if(txt!==undefined)e.textContent=txt;return e}
-function botLink(cod){return "https://t.me/"+BOT+"?start="+encodeURIComponent(cod)}
+function botLink(cod){var desdeApp=new URLSearchParams(location.search).get("origen")==="app";return "https://t.me/"+BOT+"?start="+encodeURIComponent((desdeApp?"app_":"")+cod)}
 function num(v){var n=parseInt(v,10);return isNaN(n)?0:n}
 function portadaDe(lista,campo){var x=lista.filter(function(o){return o[campo]})[0];return x?x[campo]:""}
 function parseCSV(t){
