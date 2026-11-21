@@ -105,3 +105,42 @@
 .sala-pantalla-frente{position:absolute;z-index:12;left:8%;right:8%;bottom:-7%;height:13%;border:clamp(7px,1.2vw,13px) solid #17191f;border-bottom:0;border-radius:24px 24px 0 0;background:linear-gradient(180deg,#080a0f,#171b24);box-shadow:0 -4px 0 #555b64,0 -10px 25px #dff5ff16,0 -16px 38px #dff5ff0a;pointer-events:none}
 .cine-escena[data-momento="noche"] .sala-pantalla-frente{box-shadow:0 -4px 0 #59616b,0 -10px 30px #dff5ff66,0 -18px 55px #dff5ff35}
 @media(max-width:560px){.sala-cuadro{top:8%;left:24%;width:52%;min-height:22%;padding:6px;gap:2px}.sala-cuadro span{font-size:7px}.sala-cuadro small{font-size:6px}.sala-cuadro b{font-size:10px}.sala-pantalla-frente{left:4%;right:4%;height:12%;bottom:-7%;border-width:7px}}
+
+
+/* Ajustes finales solicitados: clima sin etiqueta, snacks apoyados y pantalla encendida de noche. */
+.clima-etiqueta{display:none!important}
+.sala-mesita{height:22%;bottom:7%;width:27%}
+.mesa-palomitas,.mesa-refresco{
+  top:-31px;
+  font-size:clamp(27px,5.2vw,44px);
+  line-height:1;
+  z-index:3;
+  transform:translateY(9px);
+  filter:drop-shadow(0 5px 3px #000b);
+  animation:none;
+}
+.mesa-palomitas{left:5%}
+.mesa-refresco{right:4%;top:-31px}
+.sala-pantalla-frente{
+  left:6%;right:6%;height:16%;bottom:-7%;
+  box-shadow:0 -4px 0 #59616b,0 -10px 24px #dff5ff12;
+}
+.sala-pantalla-frente:before{
+  content:"";position:absolute;left:5%;right:5%;bottom:100%;height:185%;
+  background:linear-gradient(0deg,#dff8ff38 0%,#dff8ff16 34%,transparent 100%);
+  clip-path:polygon(0 100%,100% 100%,72% 0,28% 0);
+  filter:blur(9px);opacity:0;pointer-events:none;
+}
+.cine-escena[data-momento="noche"] .sala-pantalla-frente{
+  background:linear-gradient(180deg,#18222d 0%,#07090d 80%);
+  box-shadow:0 -4px 0 #71808e,0 -10px 28px #dff5ff88,0 -18px 55px #dff5ff55;
+}
+.cine-escena[data-momento="noche"] .sala-pantalla-frente:before{
+  opacity:1;animation:hazPantallaNoche 4s ease-in-out infinite;
+}
+@keyframes hazPantallaNoche{0%,100%{opacity:.55}50%{opacity:1}}
+@media(max-width:560px){
+  .sala-mesita{width:29%;height:22%;bottom:7%}
+  .mesa-palomitas,.mesa-refresco{font-size:clamp(25px,7vw,36px);top:-29px;transform:translateY(8px)}
+  .sala-pantalla-frente{left:4%;right:4%;height:15%}
+}
