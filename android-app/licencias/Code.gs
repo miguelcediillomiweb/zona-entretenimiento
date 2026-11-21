@@ -38,7 +38,12 @@ function configurarLicencias() {
   return info;
 }
 
-/** Ejecuta generarCodigos(10) para crear diez claves nuevas. */
+/** Ejecuta esta función desde el menú para crear diez claves nuevas. */
+function generarDiezCodigos() {
+  return generarCodigos(10);
+}
+
+/** También permite generar entre 1 y 100 claves indicando la cantidad. */
 function generarCodigos(cantidad) {
   cantidad = Math.max(1, Math.min(100, Number(cantidad) || 1));
   const ss = obtenerHoja_();
