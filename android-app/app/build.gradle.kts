@@ -4,6 +4,8 @@ plugins {
     id("com.google.gms.google-services")
 }
 
+val stableKeystoreFile = file("zona-release.jks")
+
 android {
     namespace = "mx.cedillo.zonaentretenimiento"
     compileSdk = 36
@@ -12,8 +14,27 @@ android {
         applicationId = "mx.cedillo.zonaentretenimiento"
         minSdk = 23
         targetSdk = 35
-        versionCode = 1
-        versionName = "1.0.0"
+        versionCode = 2
+        versionName = "1.1.0"
+    }
+
+    signingConfigs {
+        if (stableKeystoreFile.exists()) {
+            create("stable") {
+                storeFile = stableKeystoreFile
+                storePassword = System.getenv("ANDROID_STORE_PASSWORD")
+                keyAlias = System.getenv("ANDROID_KEY_ALIAS")
+                keyPassword = System.getenv("ANDROID_KEY_PASSWORD")
+            }
+        }
+    }
+
+    buildTypes {
+        getByName("debug") {
+            if (stableKeystoreFile.exists()) {
+                signingConfig = signingConfigs.getByName("stable")
+            }
+        }
     }
 
     compileOptions {
