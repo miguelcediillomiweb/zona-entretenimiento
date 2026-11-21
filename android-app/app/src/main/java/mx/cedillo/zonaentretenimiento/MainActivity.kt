@@ -19,10 +19,11 @@ import java.net.HttpURLConnection
 import java.net.URL
 
 class MainActivity : Activity() {
-    private val websiteUrl = "https://miguelcediillomiweb.github.io/zona-entretenimiento/"
+    private val websiteUrl = "https://miguelcediillomiweb.github.io/zona-entretenimiento/?origen=app"
     private val controlUrl = "https://raw.githubusercontent.com/miguelcediillomiweb/zona-entretenimiento/app-android-separada/android-app/app-config.json"
     private lateinit var root: LinearLayout
-    private val internalHost = "miguelcediillomiweb.github.io"
+    private val internalHost = "miguelcediillomi.github.io"
+    private var webViewActual: WebView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +40,9 @@ class MainActivity : Activity() {
             setBackgroundColor(0xFF101025.toInt())
         }
         setContentView(root)
+        if (intent?.data?.scheme == "zonaentretenimiento") {
+            // El enlace de regreso desde Telegram abre el catálogo dentro de la APK.
+        }
 
         Thread {
             val config = readRemoteConfig()
@@ -101,6 +105,7 @@ class MainActivity : Activity() {
             }
             loadUrl(websiteUrl)
         }
+        webViewActual = webView
         root.addView(webView)
         CoroutineScope(Dispatchers.IO).launch {
             OneSignal.Notifications.requestPermission(false)
