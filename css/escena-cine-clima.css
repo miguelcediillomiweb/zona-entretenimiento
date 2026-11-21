@@ -91,29 +91,17 @@
 @media(max-width:370px){.cine-escena{min-height:275px}.ventana-marco,.cine-sala{min-height:238px}.clima-etiqueta{font-size:.52rem}.cine-escena-caption{font-size:.52rem}}
 @media(prefers-reduced-motion:reduce){.cine-escena *,.cine-clock *{animation:none!important;transition:none!important}}
 
-/* POV cinematográfico: la pantalla está enfrente, el sillón solo asoma en primer plano. */
-.cine-escena.cine-pov{grid-template-columns:minmax(0,29%) minmax(0,71%);min-height:clamp(300px,43vw,490px);background:#08090d}
-.cine-pov .cine-ventana{padding:clamp(8px,1.5vw,16px);border-right:4px solid #523727}
-.cine-pov .ventana-marco{min-height:100%;border-width:clamp(6px,1vw,11px)}
-.cine-pov .cine-sala{min-height:300px;background:radial-gradient(ellipse at 50% 38%,#292b31,#111217 68%,#08090c)}
-.cine-pov .sala-pared{inset:0;background:linear-gradient(110deg,#29282a,#17181d 70%,#0a0b0e)}
-.cine-pov .sala-halo{top:2%;left:7%;width:86%;height:76%;background:radial-gradient(ellipse,#e9f7ff55 0,#e9f7ff20 45%,transparent 74%)}
-.cine-pov .sala-televisor{z-index:5;top:5%;left:7%;width:86%;height:75%;padding:clamp(6px,1vw,12px);border:clamp(5px,.8vw,9px) solid #26272c;border-radius:12px;background:linear-gradient(135deg,#505159,#111216 30%,#303138);box-shadow:0 0 0 2px #090a0d,0 14px 30px #000d,0 0 32px #eafaff55}
-.cine-pov .televisor-pantalla{border-radius:4px;background:radial-gradient(ellipse at 50% 60%,#d3f2ff 0,#5e8eaa 38%,#14283c 100%);box-shadow:inset 0 0 35px #d8f6ff99,0 0 25px #d9f5ff99}
-.cine-pov .televisor-pantalla span{font-size:clamp(22px,4vw,42px);text-shadow:0 0 24px #fff}
-.cine-pov .televisor-pie{display:none}
-.cine-pov .sala-luz{z-index:6;top:72%;left:5%;width:90%;height:22%;background:linear-gradient(180deg,#e9f8ff3d,transparent);clip-path:polygon(12% 0,88% 0,100% 100%,0 100%);filter:blur(9px)}
-.cine-pov .sala-sillon{z-index:8;left:16%;bottom:-12%;width:68%;height:31%;filter:drop-shadow(0 -5px 12px #000c)}
-.cine-pov .sillon-respaldo{top:0;height:77%;border-radius:48% 48% 12px 12px;background:linear-gradient(180deg,#694331,#39231d 82%);border-color:#8c5a40}
-.cine-pov .sillon-asiento{height:30%;border-radius:18px 18px 0 0;background:linear-gradient(#80543d,#3c241d)}
-.cine-pov .sillon-brazo{height:58%;width:20%;border-radius:22px 22px 4px 4px}
-.cine-pov .sillon-cojin{display:none}
-.cine-pov .sala-mesita{z-index:9;right:2%;bottom:4%;width:17%;height:13%;opacity:.96}
-.cine-pov .mesa-palomitas,.cine-pov .mesa-refresco{top:-29px;font-size:clamp(18px,3vw,30px)}
-.cine-pov .sala-alfombra{height:15%;opacity:.65}
-.cine-pov .sala-sombra{z-index:10;background:linear-gradient(90deg,#0000 65%,#0003)}
-.cine-pov .sala-primer-plano{position:absolute;z-index:11;left:0;right:0;bottom:0;height:9%;pointer-events:none;background:linear-gradient(180deg,transparent,#09090c 88%)}
-.cine-pov .cine-escena-caption{z-index:12}
-.cine-pov .clima-etiqueta{display:none!important}
-@media(max-width:560px){.cine-escena.cine-pov{grid-template-columns:minmax(0,27%) minmax(0,73%);min-height:285px;width:calc(100% - 18px)}.cine-pov .cine-ventana{padding:6px;border-right-width:3px}.cine-pov .ventana-marco{min-height:100%;border-width:6px}.cine-pov .cine-sala{min-height:285px}.cine-pov .sala-televisor{top:7%;left:5%;width:90%;height:70%;padding:5px;border-width:5px}.cine-pov .sala-sillon{left:7%;width:83%;height:28%;bottom:-10%}.cine-pov .sala-mesita{width:21%;height:12%;right:1%;bottom:4%}.cine-pov .mesa-palomitas,.cine-pov .mesa-refresco{font-size:20px;top:-23px}.cine-pov .cine-escena-caption{font-size:.57rem;padding:6px 8px}}
-@media(max-width:370px){.cine-escena.cine-pov{min-height:255px}.cine-pov .cine-sala{min-height:255px}.cine-pov .sala-televisor{height:69%}}
+/* Composición restaurada: ventana amplia al exterior, sala y pantalla en primer plano. */
+.ventana-cortinas{position:absolute;z-index:6;inset:0;display:flex;justify-content:space-between;overflow:hidden;pointer-events:none}
+.ventana-cortinas i{display:block;width:23%;height:100%;background:linear-gradient(90deg,#4c2630,#8c4d50 48%,#542c36);box-shadow:0 0 12px #160b0caa;transition:transform 1.8s ease}
+.ventana-cortinas i:first-child{transform:translateX(-86%)}
+.ventana-cortinas i:last-child{transform:translateX(86%)}
+.cine-escena[data-momento="noche"] .ventana-cortinas i:first-child{transform:translateX(0)}
+.cine-escena[data-momento="noche"] .ventana-cortinas i:last-child{transform:translateX(0)}
+.sala-cuadro{position:absolute;z-index:4;top:9%;left:30%;width:40%;min-height:24%;padding:clamp(8px,1.4vw,14px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;text-align:center;color:#f5e6c8;background:linear-gradient(145deg,#33241d,#171313);border:clamp(4px,.7vw,7px) solid #a47a4c;outline:2px solid #25170f;box-shadow:0 7px 16px #0009,inset 0 0 0 1px #f3d6a055}
+.sala-cuadro span{font-size:clamp(8px,1.25vw,14px);font-weight:900;letter-spacing:.08em}
+.sala-cuadro small{font-size:clamp(6px,.9vw,10px);letter-spacing:.2em;color:#d8b985}
+.sala-cuadro b{font-size:clamp(11px,1.8vw,20px);letter-spacing:.12em;color:#fff0cc;text-shadow:0 0 8px #e9c88a55}
+.sala-pantalla-frente{position:absolute;z-index:12;left:8%;right:8%;bottom:-7%;height:13%;border:clamp(7px,1.2vw,13px) solid #17191f;border-bottom:0;border-radius:24px 24px 0 0;background:linear-gradient(180deg,#080a0f,#171b24);box-shadow:0 -4px 0 #555b64,0 -10px 25px #dff5ff16,0 -16px 38px #dff5ff0a;pointer-events:none}
+.cine-escena[data-momento="noche"] .sala-pantalla-frente{box-shadow:0 -4px 0 #59616b,0 -10px 30px #dff5ff66,0 -18px 55px #dff5ff35}
+@media(max-width:560px){.sala-cuadro{top:8%;left:24%;width:52%;min-height:22%;padding:6px;gap:2px}.sala-cuadro span{font-size:7px}.sala-cuadro small{font-size:6px}.sala-cuadro b{font-size:10px}.sala-pantalla-frente{left:4%;right:4%;height:12%;bottom:-7%;border-width:7px}}
