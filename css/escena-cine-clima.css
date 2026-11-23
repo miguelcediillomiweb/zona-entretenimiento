@@ -147,3 +147,66 @@
 
 /* La luz nocturna nace de la pantalla en primer plano, no de la pared. */
 .sala-luz{display:none!important}
+
+
+/* REFINAMIENTO 23-11-2026: ventana protagonista y animaciones legibles. */
+.cine-escena{grid-template-columns:minmax(0,1.38fr) minmax(0,1fr)}
+.cine-ventana{padding:clamp(10px,1.6vw,18px)}
+.ventana-marco{min-height:245px}
+.cine-sala{min-width:0}
+.sala-cuadro{left:32%;width:36%;min-height:21%;top:7%;padding:7px 5px;gap:3px}
+.sala-cuadro span{font-size:clamp(7px,1vw,11px)}
+.sala-cuadro small{font-size:clamp(6px,.75vw,8px)}
+.sala-cuadro b{font-size:clamp(10px,1.4vw,15px)}
+.sala-sillon{left:9%;width:70%;height:31%;bottom:10%}
+.sala-mesita{right:2%;width:25%;height:19%;bottom:7%}
+.mesa-palomitas,.mesa-refresco{font-size:clamp(23px,3.7vw,34px);top:-27px}
+.sala-pantalla-frente{left:3%;right:3%;height:14%}
+.cielo-aves{z-index:6;top:18%;height:32%;opacity:0;letter-spacing:0;white-space:normal;animation:none}
+.cielo-aves svg{position:absolute;width:100%;height:100%;overflow:visible}
+.cielo-aves .bandada{fill:none;stroke:#142c39;stroke-width:3.8;stroke-linecap:round;stroke-linejoin:round}
+.cielo-aves .ave-1{animation:aveVuelo1 12s linear infinite}
+.cielo-aves .ave-2{animation:aveVuelo2 15s linear infinite -5s}
+.cielo-aves .ave-3{animation:aveVuelo3 13s linear infinite -8s}
+.cielo-avion{z-index:7;top:13%;font-size:clamp(20px,3.3vw,31px);font-weight:900;color:#152d42;text-shadow:0 0 5px #fff9,0 0 12px #fff8;animation:avionCruza 27s linear infinite 3s}
+.cielo-avion:after{content:"";position:absolute;right:27%;top:28%;width:5px;height:5px;border-radius:50%;background:#fff;box-shadow:0 0 5px 3px #fff,0 0 12px 5px #ffd96a;animation:balizaAvion .8s steps(2,end) infinite}
+.cielo-luciernagas{position:absolute;z-index:6;inset:0;opacity:0;pointer-events:none;transition:opacity 1.5s ease}
+.cielo-luciernagas i{position:absolute;width:5px;height:5px;border-radius:50%;background:#eaff91;box-shadow:0 0 5px 2px #dfff65,0 0 13px 5px #caff43;animation:luciernaga 3.2s ease-in-out infinite}
+.cielo-luciernagas i:nth-child(1){left:12%;top:60%;animation-delay:-.4s}
+.cielo-luciernagas i:nth-child(2){left:23%;top:76%;animation-delay:-2s}
+.cielo-luciernagas i:nth-child(3){left:38%;top:57%;animation-delay:-1.2s}
+.cielo-luciernagas i:nth-child(4){left:51%;top:70%;animation-delay:-2.6s}
+.cielo-luciernagas i:nth-child(5){left:65%;top:55%;animation-delay:-.8s}
+.cielo-luciernagas i:nth-child(6){left:78%;top:75%;animation-delay:-1.8s}
+.cielo-luciernagas i:nth-child(7){left:88%;top:61%;animation-delay:-2.3s}
+.cielo-luciernagas i:nth-child(8){left:46%;top:86%;animation-delay:-.2s}
+.cine-escena[data-momento="noche"] .cielo-luciernagas{opacity:1}
+.cine-escena[data-momento="noche"] .cielo-aves{opacity:.8}
+.cine-escena[data-momento="noche"] .cielo-avion{color:#dceeff;text-shadow:0 0 7px #fff,0 0 18px #8bd5ff}
+.cine-escena[data-momento="noche"] .cielo-luna{filter:drop-shadow(0 0 15px #e8f3ff) drop-shadow(0 0 30px #9bcaff)}
+.cine-escena[data-momento="noche"] .sala-halo{opacity:.5}
+.cine-escena[data-momento="noche"] .sala-pantalla-frente{height:17%;box-shadow:0 -3px 0 #91a8ba,0 -12px 35px #dff8ffbb,0 -24px 70px #9bdcff77}
+.cine-escena[data-momento="noche"] .sala-pantalla-frente:before{height:260%;opacity:1;background:linear-gradient(0deg,#dff8ff55,#c4eaff20 55%,transparent)}
+@keyframes aveVuelo1{0%{transform:translate(-20%,12%) scale(.8)}100%{transform:translate(115%,-12%) scale(.8)}}
+@keyframes aveVuelo2{0%{transform:translate(-25%,30%) scale(.58)}100%{transform:translate(125%,2%) scale(.58)}}
+@keyframes aveVuelo3{0%{transform:translate(-20%,0) scale(.68)}100%{transform:translate(120%,20%) scale(.68)}}
+@keyframes balizaAvion{0%,44%{opacity:1}45%,100%{opacity:.08}}
+@keyframes luciernaga{0%,100%{opacity:.12;transform:translate(0,0) scale(.65)}45%{opacity:1;transform:translate(8px,-10px) scale(1.3)}70%{opacity:.35;transform:translate(-5px,-3px) scale(.8)}}
+@media(max-width:560px){
+ .cine-escena{grid-template-columns:minmax(0,1.38fr) minmax(0,1fr);min-height:310px}
+ .cine-ventana{padding:7px}
+ .ventana-marco{min-height:270px}
+ .cine-sala{min-height:310px}
+ .sala-cuadro{left:19%;width:62%;top:7%;min-height:20%;padding:5px 3px}
+ .sala-cuadro span{font-size:6px}
+ .sala-cuadro small{font-size:5px}
+ .sala-cuadro b{font-size:9px}
+ .sala-sillon{left:5%;width:76%;height:29%;bottom:12%}
+ .sala-mesita{right:1%;width:27%;height:18%;bottom:7%}
+ .mesa-palomitas,.mesa-refresco{font-size:clamp(20px,6vw,29px);top:-24px}
+ .sala-pantalla-frente{left:2%;right:2%;height:14%}
+}
+@media(max-width:370px){
+ .cine-escena{grid-template-columns:minmax(0,1.32fr) minmax(0,1fr)}
+ .sala-cuadro{left:15%;width:70%}
+}
