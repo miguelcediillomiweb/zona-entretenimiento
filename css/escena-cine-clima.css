@@ -210,3 +210,7 @@
  .cine-escena{grid-template-columns:minmax(0,1.32fr) minmax(0,1fr)}
  .sala-cuadro{left:15%;width:70%}
 }
+
+/* La bandada también se distingue durante el día. */
+.cielo-aves{opacity:.82}
+.cine-escena[data-momento="noche"] .cielo-aves{opacity:.9}
